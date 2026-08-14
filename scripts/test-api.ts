@@ -1,6 +1,6 @@
 async function runTest() {
   async function getToken(action: string, prevToken?: string) {
-    const res = await fetch("http://localhost:3005/api/whop/discount", {
+    const res = await fetch("http://localhost:3000/api/whop/discount", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action, token: prevToken })
@@ -10,7 +10,7 @@ async function runTest() {
 
   async function testCheckout(name: string, payload: any) {
     console.log(`\n--- Test: ${name} ---`);
-    const res = await fetch("http://localhost:3005/api/whop/checkout", {
+    const res = await fetch("http://localhost:3000/api/whop/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
