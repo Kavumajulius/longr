@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LONGR - Your Daily Longevity Feed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background-color: #0a0e12;
+            color: white;
+            overflow-x: hidden;
+        }
+        /* ---------- Hero ---------- */
+        .background-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.85)),
+                         url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: #22FF00;
+            margin-right: 40px;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .search-icon, .profile-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .profile-icon {
+            border-radius: 50%;
+            background-color: #555;
+            background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80');
+            background-size: cover;
+        }
+        .hero {
+            padding: 80px 50px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .match {
+            color: #22FF00;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .year {
+            opacity: 0.8;
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+        .play-btn {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: filter 0.2s ease;
+        }
+        .play-btn:hover{ filter: brightness(0.9); }
+        .more-info-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid white;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* ---------- Featured row ---------- */
+        .header-content-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 10;
+        }
+        .header-content-section h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .movie-row {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            scrollbar-width: none;
+        }
+        .movie-row::-webkit-scrollbar {
+            display: none;
+        }
+        .movie-card {
+            position: relative;
+            min-width: 160px;
+            height: 240px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .movie-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+        }
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .movie-card .tag{
+            position:absolute;
+            top:10px;
+            left:10px;
+            background:rgba(0,0,0,0.6);
+            border:1px solid rgba(34,255,0,0.4);
+            color:#22FF00;
+            font-size:0.65em;
+            font-weight:700;
+            letter-spacing:0.5px;
+            text-transform:uppercase;
+            padding:4px 8px;
+            border-radius:999px;
+        }
+        /* ---------- Categories ---------- */
+        .categories-wrapper {
+            position: relative;
+            background: #111417;
+            padding: 24px 70px 24px 20px;
+        }
+        .categories {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        .category-btn {
+            background: #1c2126;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: white;
+            padding: 8px 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: #22FF00;
+            color: #05130a;
+            border-color: #22FF00;
+        }
+        .categories-next {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #22FF00;
+            color: #05130a;
+            border: none;
+            font-size: 1.3em;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            transition: filter 0.2s ease;
+        }
+        .categories-next:hover { filter: brightness(0.9); }
+        /* ---------- Experience / Session Grid ---------- */
+        .content-section {
+            padding: 40px 50px;
+        }
+        .content-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 30vw, 250px), 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: 2.5rem;
+        }
+        .app-card {
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+        .app-card img.cover {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+        .app-card .info {
+            padding: 0.75rem 0;
+        }
+        .app-card .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: clamp(0.625rem, 2vw, 0.7rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .app-card .badge.live { background: rgba(34,255,0,0.15); border-color:#22FF00; color:#22FF00; }
+        .app-card .badge.new { background: rgba(255,255,255,0.9); border-color:#fff; color:#000; }
+        .app-card .badge.hot { background: rgba(232,73,26,0.2); border-color:#E8491A; color:#ff9166; }
+        .app-card .unlocked-ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #22FF00;
+            color: #05130a;
+            font-size: 0.65em;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            z-index: 2;
+        }
+
+        .app-card .info h3 {
+            font-size: clamp(1rem, 3vw, 1.125rem);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .app-card .info .category {
+            font-size: clamp(0.75rem, 2vw, 0.8125rem);
+            color: #9aa0a6;
+            margin-bottom: 0.375rem;
+        }
+        .app-card .info .price {
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+            font-weight: 700;
+            color: #22FF00;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        /* ---------- Full-screen article view ---------- */
+        .article-view {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #0a0e12;
+            z-index: 2500;
+            overflow-y: auto;
+        }
+        .article-view.open { display: block; }
+        .article-shell {
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr) 300px;
+            min-height: 100vh;
+        }
+        .article-sidebar {
+            border-right: 1px solid rgba(255,255,255,0.08);
+            padding: 28px 18px;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .article-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9em;
+            cursor: pointer;
+            margin-bottom: 26px;
+            padding: 0;
+        }
+        .article-back:hover { color: #22FF00; }
+        .sidebar-cat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .sidebar-cat-btn {
+            text-align: left;
+            background: none;
+            border: none;
+            color: #9aa0a6;
+            font-size: 0.88em;
+            font-weight: 600;
+            padding: 9px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sidebar-cat-btn:hover { background: #1c2126; color: #fff; }
+        .sidebar-cat-btn.active { background: #22FF00; color: #05130a; }
+
+        .article-main {
+            padding: 40px 44px 60px;
+            max-width: 780px;
+        }
+        .article-eyebrow {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #22FF00;
+            margin-bottom: 8px;
+        }
+        .article-title {
+            font-size: 2.1em;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .article-meta {
+            color: #9aa0a6;
+            font-size: 0.88em;
+            margin-bottom: 26px;
+        }
+        .article-hero-img {
+            width: 100%;
+            height: 380px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            margin-bottom: 28px;
+        }
+        .article-desc {
+            color: #c9ccd1;
+            font-size: 1em;
+            line-height: 1.65;
+            margin-bottom: 30px;
+        }
+        .article-footer-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #9aa0a6;
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .article-related {
+            border-left: 1px solid rgba(255,255,255,0.08);
+            padding: 32px 20px;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .related-heading {
+            font-weight: 800;
+            font-size: 1em;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+        .related-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+            cursor: pointer;
+        }
+        .related-item img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .related-item .rt {
+            font-size: 0.85em;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+        .related-item .rc {
+            font-size: 0.72em;
+            color: #22FF00;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .itinerary .day-item {
+            position: relative;
+            padding: 16px 16px 18px;
+            background: #ffffff;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08), 0 14px 28px rgba(0,0,0,0.16);
+        }
+        .itinerary .day-item::before,
+        .itinerary .day-item::after {
+            content: "";
+            position: absolute;
+            left: 6%;
+            right: 6%;
+            height: 14px;
+            background: #ffffff;
+            border-radius: 0 0 14px 14px;
+            z-index: -1;
+        }
+        .itinerary .day-item::before {
+            bottom: -6px;
+            opacity: 0.85;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.10);
+        }
+        .itinerary .day-item::after {
+            bottom: -12px;
+            left: 11%;
+            right: 11%;
+            opacity: 0.65;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        .day-header {
+            display: flex;
+            align-items: center;
+        }
+        .day-checkbox { margin-right: 15px; width:18px; height:18px; accent-color:#22FF00; flex-shrink:0; }
+        .day-description { flex-grow: 1; font-weight: 700; font-size: 1.02em; color: #14181c; }
+        .day-price { color: #0e9f3e; font-weight: 800; flex-shrink:0; margin-left: 10px; }
+        .day-body {
+            margin: 8px 0 0 33px;
+            color: #5b6168;
+            font-size: 0.9em;
+            line-height: 1.55;
+        }
+        .total-price {
+            text-align: right;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #fff;
+        }
+        .total-price span{ color:#22FF00; }
+        .booking-btn {
+            display: block;
+            width: 220px;
+            margin: 22px auto 0;
+            padding: 14px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .booking-btn:hover{ filter: brightness(0.9); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* ---------- Longevity nutrition promo popup ---------- */
+        .promo-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+        .promo-overlay.open { display: flex; }
+        .promo-card {
+            position: relative;
+            display: flex;
+            width: 100%;
+            max-width: 820px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: slideIn 0.4s ease;
+        }
+        .promo-image {
+            flex: 1;
+            min-height: 360px;
+            background-size: cover;
+            background-position: center;
+        }
+        .promo-content {
+            flex: 1;
+            padding: 44px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .promo-title {
+            font-size: 2em;
+            font-weight: 900;
+            line-height: 1.15;
+            color: #0b0b0d;
+            margin-bottom: 16px;
+        }
+        .promo-text {
+            font-size: 1em;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .promo-sub {
+            font-size: 0.95em;
+            color: #777;
+            margin-bottom: 24px;
+        }
+        .promo-primary {
+            background: #0b0b0d;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: filter 0.2s ease;
+        }
+        .promo-primary:hover { filter: brightness(1.3); }
+        .promo-secondary {
+            background: #fff;
+            color: #0b0b0d;
+            border: 1px solid rgba(0,0,0,0.15);
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .promo-secondary:hover { background: #f2f2f2; }
+        .promo-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #0b0b0d;
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 5;
+        }
+        @media (max-width: 640px) {
+            .promo-card { flex-direction: column; max-height: 90vh; overflow-y: auto; }
+            .promo-image { min-height: 180px; }
+        }
+
+        /* ---------- New homepage sections ---------- */
+        .section-headline {
+            font-size: 1.7em; font-weight: 900; text-align: center; margin-bottom: 10px; letter-spacing: 0.5px;
+        }
+        .section-headline.light { color: #fff; }
+        .section-sub {
+            text-align: center; color: #9aa0a6; font-size: 0.95em; max-width: 560px; margin: 0 auto 34px;
+        }
+
+        .stats-section { padding: 60px 50px; text-align: center; }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;
+        }
+        .stat-card {
+            background: #111417; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 26px 14px;
+        }
+        .stat-num { font-size: 1.9em; font-weight: 900; color: #22FF00; margin-bottom: 6px; }
+        .stat-label { font-size: 0.78em; color: #9aa0a6; line-height: 1.4; }
+
+        .offering-section { padding: 20px 50px 60px; }
+        .offering-eyebrow {
+            text-align: center; color: #22FF00; font-weight: 800; font-size: 0.8em; letter-spacing: 1.5px;
+            margin-bottom: 18px;
+        }
+        .offering-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+        .offering-card {
+            background: #111417; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px;
+            padding: 34px 28px; text-align: center;
+        }
+        .offering-card.alt { border-color: rgba(34,255,0,0.25); }
+        .offering-icon { width: 56px; height: 56px; border-radius: 50%; background: #1c2126; display: flex; align-items: center; justify-content: center; font-size: 1.6em; margin: 0 auto 14px; }
+        .offering-tag { color: #22FF00; font-size: 0.72em; font-weight: 800; letter-spacing: 1px; margin-bottom: 6px; }
+        .offering-card h3 { font-size: 1.6em; font-weight: 900; margin-bottom: 12px; }
+        .offering-card p { color: #9aa0a6; font-size: 0.9em; line-height: 1.55; margin-bottom: 22px; min-height: 66px; }
+        .offering-btn {
+            width: 100%; background: #fff; color: #000; border: none; padding: 13px; border-radius: 50px;
+            font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; margin-bottom: 12px;
+            transition: filter .2s ease;
+        }
+        .offering-btn:hover { filter: brightness(0.9); }
+        .offering-stars { font-size: 0.78em; color: #9aa0a6; }
+
+        .guarantee-section {
+            background: #111417; padding: 60px 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .guarantee-title { font-size: 1.6em; font-weight: 900; max-width: 780px; margin: 0 auto 16px; line-height: 1.3; }
+        .guarantee-body { color: #9aa0a6; font-size: 0.92em; max-width: 620px; margin: 0 auto; line-height: 1.6; }
+
+        .testimonial-section { padding: 60px 50px; }
+        .testimonial-eyebrow {
+            text-align: center; color: #22FF00; font-weight: 800; font-size: 0.78em; letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+        .testimonial-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 30px auto 0; }
+        .testimonial-card {
+            background: #111417; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px 20px;
+        }
+        .testimonial-card p { font-size: 0.92em; line-height: 1.55; color: #d8dade; margin-bottom: 16px; font-style: italic; }
+        .testimonial-name { color: #22FF00; font-size: 0.82em; font-weight: 700; }
+
+        .faq-section { padding: 20px 50px 60px; }
+        .faq-list { max-width: 700px; margin: 30px auto 0; display: flex; flex-direction: column; gap: 10px; }
+        .faq-item {
+            background: #111417; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden;
+        }
+        .faq-question {
+            padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            font-weight: 700; font-size: 0.92em;
+        }
+        .faq-question .chevron { transition: transform 0.2s ease; color: #9aa0a6; }
+        .faq-item.open .faq-question .chevron { transform: rotate(180deg); color: #22FF00; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.25s ease;
+            color: #9aa0a6; font-size: 0.85em; line-height: 1.55;
+        }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 18px 16px; }
+
+        .site-footer { background: #05070a; padding: 60px 50px 24px; }
+        .footer-cta { text-align: center; margin-bottom: 40px; }
+        .footer-cta h2 { font-size: 1.5em; font-weight: 900; margin-bottom: 20px; }
+        .footer-form { display: flex; justify-content: center; gap: 10px; max-width: 420px; margin: 0 auto; }
+        .footer-form input {
+            flex: 1; padding: 13px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
+            background: #14181c; color: #fff; font-family: 'Nunito', sans-serif;
+        }
+        .footer-btn {
+            background: #22FF00; color: #05130a; border: none; padding: 13px 22px; border-radius: 10px;
+            font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif;
+        }
+        .footer-msg { margin-top: 12px; font-size: 0.85em; color: #22FF00; min-height: 18px; }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center; padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08); color: #6b7178; font-size: 0.82em; flex-wrap: wrap; gap: 10px;
+        }
+
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            header { padding: 16px 24px; }
+            .nav-links { gap: 18px; }
+            .nav-links a { font-size: 12px; }
+            .hero { padding: 100px 24px 50px; }
+            .hero h1 { font-size: 36px; }
+            .header-content-section, .content-section { padding-left: 24px; padding-right: 24px; }
+            .categories-wrapper { padding: 20px 60px 20px 24px; }
+        }
+
+        @media (max-width: 680px) {
+            .nav-links { display: none; }
+            .logo { margin-right: 0; }
+            header { padding: 14px 20px; }
+            .background-wrapper { min-height: 78vh; }
+            .hero { padding: 90px 20px 40px; }
+            .hero h1 { font-size: 28px; }
+            .meta-info { font-size: 12px; flex-wrap: wrap; gap: 8px; }
+            .buttons { margin-bottom: 40px; gap: 10px; }
+            .play-btn { padding: 10px 18px; font-size: 0.9em; }
+            .more-info-btn { width: 36px; height: 36px; }
+            .header-content-section h2, .content-section h2 { font-size: 15px; }
+            .movie-card { min-width: 120px; height: 170px; }
+            .header-content-section, .content-section { padding-left: 20px; padding-right: 20px; }
+            .categories-wrapper { padding: 16px 54px 16px 20px; }
+            .category-btn { padding: 7px 14px; font-size: 0.8em; }
+            .categories-next { width: 34px; height: 34px; right: 10px; font-size: 1.1em; }
+            .app-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+            .app-card .info h3 { font-size: 0.95em; }
+
+            .article-shell { grid-template-columns: 1fr; }
+            .article-sidebar {
+                position: static;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 16px 20px;
+                overflow-x: auto;
+            }
+            .sidebar-cat-list { flex-direction: row; }
+            .article-main { padding: 24px 20px 40px; max-width: 100%; }
+            .article-hero-img { height: 200px; }
+            .article-title { font-size: 1.5em; }
+            .article-desc { font-size: 0.9em; }
+            .day-body { margin-left: 0; margin-top: 8px; }
+            .day-description { font-size: 0.95em; }
+            .total-price { font-size: 1.1em; }
+            .booking-btn { width: 100%; }
+            .article-related {
+                position: static;
+                height: auto;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                padding: 24px 20px;
+            }
+
+            .promo-card { max-width: 94%; }
+            .promo-content { padding: 30px 22px; }
+            .promo-title { font-size: 1.4em; }
+            .promo-text { font-size: 0.92em; }
+        }
+
+        @media (max-width: 680px) {
+            .stats-section, .offering-section, .guarantee-section, .testimonial-section, .faq-section, .site-footer {
+                padding-left: 20px; padding-right: 20px;
+            }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .offering-grid { grid-template-columns: 1fr; }
+            .testimonial-row { grid-template-columns: 1fr; }
+            .guarantee-title { font-size: 1.25em; }
+            .footer-form { flex-direction: column; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 24px; }
+            .background-wrapper { min-height: 72vh; }
+            .app-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+            .movie-card { min-width: 100px; height: 150px; }
+            .day-header { flex-wrap: wrap; }
+            .day-price { margin-left: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-wrapper">
+        <header>
+            <div class="nav-left">
+                <span class="logo">LONGR</span>
+                <div class="nav-links">
+                    <a href="#" style="opacity: 1;">LIVE CLASSES</a>
+                    <a href="#" style="opacity: 0.7;">NUTRITION</a>
+                    <a href="#" style="opacity: 0.7;">WORKOUTS</a>
+                    <a href="#" style="opacity: 0.7;">RECOVERY</a>
+                </div>
+            </div>
+            <div class="right-nav">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <div class="profile-icon"></div>
+            </div>
+        </header>
+
+        <div class="hero">
+            <div id="welcomeBanner" style="display:none; background:rgba(34,255,0,0.12); border:1px solid rgba(34,255,0,0.35); color:#22FF00; font-weight:700; font-size:0.85em; padding:8px 16px; border-radius:999px; margin-bottom:18px;"></div>
+            <h1>LONGR</h1>
+            <div class="meta-info">
+                <span class="match">Today's Pick</span>
+                <span class="year">2026</span>
+                <span>Monday Motivation · Full Body</span>
+            </div>
+            <div class="buttons">
+                <button class="play-btn">Add me some years!</button>
+                <button class="more-info-btn">+</button>
+            </div>
+        </div>
+
+        <div class="header-content-section">
+            <h2>FEATURED SESSIONS</h2>
+            <div class="movie-row">
+                <div class="movie-card"><span class="tag">Live</span><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80" /></div>
+                <div class="movie-card"><span class="tag">Live</span><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80" /></div>
+                <div class="movie-card"><span class="tag">New</span><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" /></div>
+                <div class="movie-card"><span class="tag">New</span><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80" /></div>
+                <div class="movie-card"><span class="tag">Live</span><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=80" /></div>
+                <div class="movie-card"><span class="tag">New</span><img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=500&q=80" /></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories-wrapper">
+        <div class="categories" id="categories"></div>
+        <button class="categories-next" id="categoriesNext" aria-label="Show more categories">&rsaquo;</button>
+    </div>
+
+    <div class="content-section">
+        <h2>DAILY LONGEVITY FEED</h2>
+        <div class="app-grid" id="experiences-grid"></div>
+    </div>
+
+    <!-- ---- Stats dashboard ---- -->
+    <section class="stats-section">
+        <h2 class="section-headline">EAT SMARTER. LIVE LONGER. THAT'S IT.</h2>
+        <p class="section-sub">Skip the fad diets and conflicting headlines. Just science-backed swaps, tracked in real minutes gained.</p>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-num">184K</div><div class="stat-label">Minutes of Life Gained by Readers</div></div>
+            <div class="stat-card"><div class="stat-num">30+</div><div class="stat-label">Longevity Categories Covered</div></div>
+            <div class="stat-card"><div class="stat-num">12K+</div><div class="stat-label">Daily Readers</div></div>
+            <div class="stat-card"><div class="stat-num">4.8★</div><div class="stat-label">Average Reader Rating</div></div>
+        </div>
+    </section>
+
+    <!-- ---- Two-path offering split ---- -->
+    <section class="offering-section">
+        <div class="offering-eyebrow">CHOOSE YOUR PATH</div>
+        <div class="offering-grid">
+            <div class="offering-card">
+                <div class="offering-icon guided">🧭</div>
+                <div class="offering-tag">DONE FOR YOU</div>
+                <h3>THE PLAN</h3>
+                <p>Get a personalized daily eating plan built around your goal. No research required — just follow the swaps.</p>
+                <button class="offering-btn" onclick="window.location.href='longr-onboarding.html'">Add me some years!</button>
+                <div class="offering-stars">★★★★★ 4.8 out of 2,140 readers</div>
+            </div>
+            <div class="offering-card alt">
+                <div class="offering-icon learn">📚</div>
+                <div class="offering-tag">LEARN IT YOURSELF</div>
+                <h3>THE SCIENCE</h3>
+                <p>Read the short-form breakdowns behind every swap — why it works, what the research says, and how to apply it.</p>
+                <button class="offering-btn" onclick="document.getElementById('experiences-grid').scrollIntoView({behavior:'smooth'})">Add me some years!</button>
+                <div class="offering-stars">★★★★★ 4.7 out of 1,860 readers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ---- Guarantee ---- -->
+    <section class="guarantee-section">
+        <h2 class="guarantee-title">WE GUARANTEE YOU'LL LEARN ONE THING THAT CHANGES WHAT'S ON YOUR PLATE — OR YOUR NEXT PLAN IS FREE.</h2>
+        <p class="guarantee-body">This applies to your first 7-Day Eat-Right Plan. Follow it for a week. If you don't walk away with at least one swap you'll actually keep, tell us and we'll build you a second plan at no cost. No fine print, no "gotchas."</p>
+    </section>
+
+    <!-- ---- Testimonial strip ---- -->
+    <section class="testimonial-section">
+        <div class="testimonial-eyebrow">READER RESULTS</div>
+        <h2 class="section-headline light">BECOME OUR NEXT SUCCESS STORY</h2>
+        <div class="testimonial-row">
+            <div class="testimonial-card">
+                <p>"Swapped my morning routine after one article. Small change, but I actually feel the difference by 3pm now."</p>
+                <div class="testimonial-name">— Achen, Kampala</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"I didn't think a food app could hold my attention. The Life Gain counter is oddly addictive in a good way."</p>
+                <div class="testimonial-name">— Marcus, London</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Finally, nutrition info that doesn't read like a supplement ad. Just the science, in two minutes."</p>
+                <div class="testimonial-name">— Wanjiru, Nairobi</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ---- FAQ ---- -->
+    <section class="faq-section">
+        <h2 class="section-headline">YOU'VE GOT QUESTIONS, WE'VE GOT ANSWERS</h2>
+        <div class="faq-list" id="faqList"></div>
+    </section>
+
+    <!-- ---- Footer email capture ---- -->
+    <footer class="site-footer">
+        <div class="footer-cta">
+            <h2>WANT A FREE LONGEVITY TIP EVERY WEEK?</h2>
+            <div class="footer-form">
+                <input type="email" id="footerEmail" placeholder="Enter your email...">
+                <button class="footer-btn" onclick="footerSubscribe()">Let's Go</button>
+            </div>
+            <div id="footerMsg" class="footer-msg"></div>
+        </div>
+        <div class="footer-bottom">
+            <span class="logo">LONGR</span>
+            <span>© 2026 LONGR · Eat right, live longer.</span>
+        </div>
+    </footer>
+
+    <div id="articleView" class="article-view">
+        <div class="article-shell">
+            <div class="article-sidebar">
+                <button class="article-back" onclick="closeArticleView()">&larr; Back to Feed</button>
+                <div class="sidebar-cat-list" id="articleCategoryList"></div>
+            </div>
+
+            <div class="article-main">
+                <div class="article-eyebrow" id="articleEyebrow"></div>
+                <h1 class="article-title" id="articleTitle"></h1>
+                <div class="article-meta" id="articleMeta"></div>
+                <div class="article-hero-img" id="articleHero"></div>
+                <p class="article-desc" id="articleDesc"></p>
+                <div class="itinerary" id="articleBody"></div>
+                <div class="total-price" id="articleTotal">Total Life Gain: <span>0</span> min</div>
+                <button class="booking-btn" id="articleCta">Add me some years!</button>
+            </div>
+
+            <div class="article-related">
+                <div class="related-heading">Related Articles</div>
+                <div id="articleRelated"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="longevityPopup" class="promo-overlay">
+        <div class="promo-card">
+            <button class="promo-close" onclick="closePromo()">&times;</button>
+            <div class="promo-image" style="background-image:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80');"></div>
+            <div class="promo-content">
+                <h2 class="promo-title">Don't Let Your Plate Cut Your Life Short!</h2>
+                <p class="promo-text">Swap one processed snack today for a handful of walnuts or berries.</p>
+                <p class="promo-sub">Small trades like this compound over decades 🥜</p>
+                <button class="promo-primary" onclick="closePromo()">Add me some years!</button>
+                <button class="promo-secondary" onclick="closePromo()">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            "All", "Cardio", "Strength", "Recovery", "Nutrition", "Mindfulness", "Sleep", "Longevity",
+            "Gut Health", "Hydration", "Fasting", "Anti-Inflammatory", "Heart Health", "Brain Health",
+            "Immunity", "Hormone Balance", "Skin Health", "Bone Health", "Metabolism", "Weight Management",
+            "Stress Relief", "Breathwork", "Yoga", "Mobility", "Supplements", "Superfoods", "Plant-Based",
+            "Protein", "Antioxidants", "Detox", "Cold Therapy", "Sauna & Heat", "Blue Zones",
+            "Circadian Health", "Meditation"
+        ];
+
+        const experiences = [
+            {
+                id: 1, title: "Monday Motivation", category: "Strength",
+                description: "A full-body strength session built to spike your heart rate early and set your circadian rhythm for the week ahead. Consistent Monday-morning training is linked to stronger weekly adherence than sessions scheduled later on.",
+                badge: "live",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700",
+                itinerary: [
+                    { part: "Warm-up & mobility", value: 8, body: "Eight minutes of dynamic stretching and joint circles raises core temperature and primes the nervous system, which lowers injury risk once you move into heavier loads. Skipping this step is the most common reason lifters feel 'off' in their first working set." },
+                    { part: "Main strength circuit", value: 20, body: "A rotating circuit of compound lifts — squats, presses, rows — trains multiple muscle groups per movement, which is more time-efficient than isolation work and builds the kind of functional strength that carries over into daily life." },
+                    { part: "Cooldown & breathwork", value: 7, body: "Slow nasal breathing after exertion shifts the body from a sympathetic 'fight or flight' state back to parasympathetic recovery mode, helping your heart rate normalize faster and improving how well you absorb the session's training stimulus." }
+                ]
+            },
+            {
+                id: 2, title: "Morning Flow", category: "Recovery",
+                description: "A gentle sunrise flow focused on mobility and breath work. Morning movement helps regulate cortisol release and primes your joints before the day's activity.",
+                badge: "live",
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700",
+                itinerary: [
+                    { part: "Breath activation", value: 5, body: "A few minutes of slow, deliberate breathing on waking helps clear overnight grogginess by increasing oxygen exchange and gently raising heart rate — a softer alternative to reaching straight for caffeine." },
+                    { part: "Sun salutations", value: 12, body: "This flowing sequence takes every major joint through its full range of motion, which is especially valuable first thing in the morning when connective tissue is at its stiffest after hours of stillness." },
+                    { part: "Seated stillness", value: 8, body: "Closing with a short seated hold gives your nervous system time to settle before the day's demands arrive, and has been linked to lower reported stress throughout the rest of the morning." }
+                ]
+            },
+            {
+                id: 3, title: "🍎 Apple Boost", category: "Nutrition",
+                description: "Apples are rich in polyphenols and soluble fiber, which help lower LDL cholesterol and support gut bacteria linked to reduced inflammation. Eat the skin on — that's where most of the antioxidants live.",
+                badge: "new",
+                image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=700",
+                itinerary: [
+                    { part: "Fiber & polyphenols", value: 6, body: "The soluble fiber in apples forms a gel in the gut that slows sugar absorption, while polyphenols concentrated in the skin act as antioxidants — reason enough to eat apples unpeeled whenever you can." },
+                    { part: "Cholesterol support", value: 6, body: "Regular apple consumption is associated with modest reductions in LDL ('bad') cholesterol in long-term cohort studies, likely driven by the same soluble fiber that binds cholesterol in the digestive tract before it's absorbed." }
+                ]
+            },
+            {
+                id: 4, title: "🥦 Broccoli Power", category: "Nutrition",
+                description: "Broccoli contains sulforaphane, a compound formed when it's chopped or chewed, that activates the body's own antioxidant and detox enzymes. Steam lightly rather than boiling to preserve it.",
+                badge: "hot",
+                image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=700",
+                itinerary: [
+                    { part: "Sulforaphane activation", value: 10, body: "Sulforaphane only forms when broccoli's cell walls are broken by chopping or chewing, which releases an enzyme that converts a precursor compound into the active antioxidant. Waiting a few minutes after chopping, before cooking, gives more of it time to form." },
+                    { part: "Anti-inflammatory boost", value: 8, body: "Light steaming — a few minutes rather than a full boil — preserves far more sulforaphane than boiling does, since the active enzyme is heat-sensitive and breaks down quickly at high temperatures." }
+                ]
+            }
+        ];
+
+        // One theme per remaining category so every category has real posts to find
+        const themes = [
+            { name: "HIIT Cardio Blast", cat: "Cardio" },
+            { name: "Zone 2 Endurance", cat: "Cardio" },
+            { name: "Deep Sleep Wind-down", cat: "Sleep" },
+            { name: "Circadian Reset", cat: "Circadian Health" },
+            { name: "Mindful Breathing", cat: "Mindfulness" },
+            { name: "Box Breathing Session", cat: "Breathwork" },
+            { name: "☕ Green Tea Ritual", cat: "Antioxidants" },
+            { name: "🥑 Avocado Glow", cat: "Skin Health" },
+            { name: "Mobility Reset", cat: "Mobility" },
+            { name: "Foam Roll Recovery", cat: "Recovery" },
+            { name: "Gut Reset Bowl", cat: "Gut Health" },
+            { name: "16:8 Fasting Guide", cat: "Fasting" },
+            { name: "Turmeric Anti-Inflammatory Shot", cat: "Anti-Inflammatory" },
+            { name: "Omega-3 Heart Boost", cat: "Heart Health" },
+            { name: "Blueberry Brain Fuel", cat: "Brain Health" },
+            { name: "Vitamin C Immunity Shot", cat: "Immunity" },
+            { name: "Hormone Balance Plate", cat: "Hormone Balance" },
+            { name: "Collagen Skin Ritual", cat: "Skin Health" },
+            { name: "Calcium & Bone Density", cat: "Bone Health" },
+            { name: "Metabolic Morning Reset", cat: "Metabolism" },
+            { name: "Sustainable Weight Plate", cat: "Weight Management" },
+            { name: "Cortisol Cooldown", cat: "Stress Relief" },
+            { name: "Restorative Yoga Flow", cat: "Yoga" },
+            { name: "Magnesium Supplement Guide", cat: "Supplements" },
+            { name: "Superfood Smoothie Bowl", cat: "Superfoods" },
+            { name: "Plant-Based Power Plate", cat: "Plant-Based" },
+            { name: "High-Protein Recovery Meal", cat: "Protein" },
+            { name: "Full-Body Detox Day", cat: "Detox" },
+            { name: "Cold Plunge Protocol", cat: "Cold Therapy" },
+            { name: "Sauna Recovery Session", cat: "Sauna & Heat" },
+            { name: "Blue Zones Eating Pattern", cat: "Blue Zones" },
+            { name: "Evening Meditation", cat: "Meditation" },
+            { name: "Hydration Habit Reset", cat: "Hydration" },
+            { name: "100-Year Lifestyle Blueprint", cat: "Longevity" }
+        ];
+        const badges = ["live", "new", "hot"];
+        const images = [
+            "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700",
+            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700",
+            "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700",
+            "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=700",
+            "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700",
+            "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=700"
+        ];
+
+        themes.forEach((t, i) => {
+            experiences.push({
+                id: experiences.length + 1,
+                title: t.name,
+                category: t.cat,
+                description: `A guided post on ${t.name.toLowerCase()}, built to compound small, repeatable gains in how you feel, move, and recover.`,
+                badge: badges[i % badges.length],
+                image: images[i % images.length],
+                itinerary: [
+                    { part: "Warm-up", value: 5 + (i % 5), body: `A short lead-in that gradually raises your heart rate and loosens the muscle groups this session relies on, so the main block starts from a body that's already ready to work rather than cold.` },
+                    { part: "Main block", value: 15 + (i % 8), body: `The core of ${t.name.toLowerCase()} — the segment doing most of the work toward the session's benefit, structured so effort builds progressively rather than peaking too early.` },
+                    { part: "Cooldown", value: 5 + (i % 4), body: `A deliberate wind-down that helps your body shift out of exertion mode, supporting faster recovery and making sure today's session banks its full benefit instead of leaving you depleted.` }
+                ]
+            });
+        });
+
+        function createCategoryButtons() {
+            const container = document.getElementById('categories');
+            categories.forEach((cat, i) => {
+                const btn = document.createElement('button');
+                btn.textContent = cat;
+                btn.classList.add('category-btn');
+                if (i === 0) btn.classList.add('active');
+                btn.onclick = () => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterExperiences(cat);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function totalLifeGain(exp){
+            return exp.itinerary.reduce((s, d) => s + d.value, 0);
+        }
+
+        function createExperienceCard(exp) {
+            const card = document.createElement('div');
+            card.className = 'app-card';
+            const isUnlocked = window.longrUnlockedIds && window.longrUnlockedIds.includes(exp.id);
+            card.innerHTML = `
+                ${isUnlocked ? '<span class="unlocked-ribbon">Unlocked for you</span>' : ''}
+                <span class="badge ${exp.badge}">${exp.badge}</span>
+                <img src="${exp.image}" class="cover">
+                <div class="info">
+                    <h3>${exp.title}</h3>
+                    <div class="category">${exp.category}</div>
+                    <div class="price">+${totalLifeGain(exp)} min life gain</div>
+                </div>
+            `;
+            card.onclick = () => openArticleView(exp);
+            return card;
+        }
+
+        function displayExperiences(list) {
+            const grid = document.getElementById('experiences-grid');
+            grid.innerHTML = '';
+            list.forEach(exp => grid.appendChild(createExperienceCard(exp)));
+        }
+
+        function filterExperiences(cat) {
+            const list = cat === 'All' ? experiences : experiences.filter(e => e.category === cat);
+            displayExperiences(list);
+        }
+
+        let currentArticleCategory = null;
+
+        function openArticleView(exp) {
+            window.currentExp = exp;
+            currentArticleCategory = exp.category;
+
+            document.getElementById('articleHero').style.backgroundImage = `url('${exp.image}')`;
+            document.getElementById('articleEyebrow').textContent = exp.category;
+            document.getElementById('articleTitle').textContent = exp.title;
+            document.getElementById('articleMeta').textContent = `LONGR Editorial · ${exp.category} · ${totalLifeGain(exp)} min read`;
+            document.getElementById('articleDesc').textContent = exp.description;
+            document.getElementById('articleCta').textContent = 'Add me some years!';
+
+            const body = document.getElementById('articleBody');
+            body.innerHTML = '';
+            exp.itinerary.forEach(part => {
+                const div = document.createElement('div');
+                div.className = 'day-item';
+                div.innerHTML = `
+                    <div class="day-header">
+                        <input type="checkbox" class="day-checkbox" data-value="${part.value}" checked>
+                        <span class="day-description">${part.part}</span>
+                        <span class="day-price">+${part.value} min</span>
+                    </div>
+                    <p class="day-body">${part.body}</p>
+                `;
+                body.appendChild(div);
+            });
+            document.querySelectorAll('.day-checkbox').forEach(cb => cb.onchange = updateArticleTotal);
+            updateArticleTotal();
+
+            renderSidebarCategories();
+            renderRelatedArticles(exp);
+
+            const view = document.getElementById('articleView');
+            view.classList.add('open');
+            view.scrollTop = 0;
+        }
+
+        function updateArticleTotal() {
+            const boxes = document.querySelectorAll('.day-checkbox:checked');
+            const total = Array.from(boxes).reduce((s, b) => s + parseFloat(b.dataset.value), 0);
+            document.getElementById('articleTotal').innerHTML = `Total Life Gain: <span>${total.toFixed(0)}</span> min`;
+        }
+
+        function renderSidebarCategories() {
+            const wrap = document.getElementById('articleCategoryList');
+            wrap.innerHTML = '';
+            categories.filter(c => c !== 'All').forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'sidebar-cat-btn' + (cat === currentArticleCategory ? ' active' : '');
+                btn.textContent = cat;
+                btn.onclick = () => selectArticleCategory(cat);
+                wrap.appendChild(btn);
+            });
+        }
+
+        function selectArticleCategory(cat) {
+            const list = experiences.filter(e => e.category === cat);
+            const pick = list.length ? list[0] : experiences[0];
+            openArticleView(pick);
+        }
+
+        function renderRelatedArticles(exp) {
+            const wrap = document.getElementById('articleRelated');
+            wrap.innerHTML = '';
+            let related = experiences.filter(e => e.category === exp.category && e.id !== exp.id);
+            if (related.length < 5) {
+                const extras = experiences.filter(e => e.id !== exp.id && !related.includes(e));
+                related = related.concat(extras);
+            }
+            related.slice(0, 6).forEach(r => {
+                const item = document.createElement('div');
+                item.className = 'related-item';
+                item.innerHTML = `<img src="${r.image}"><div><div class="rt">${r.title}</div><div class="rc">${r.category}</div></div>`;
+                item.onclick = () => openArticleView(r);
+                wrap.appendChild(item);
+            });
+        }
+
+        function closeArticleView() {
+            document.getElementById('articleView').classList.remove('open');
+        }
+
+        // Read handoff from the onboarding quiz (if the person completed it)
+        try {
+            if (localStorage.getItem('longrOnboarded') === 'true') {
+                window.longrUnlockedIds = JSON.parse(localStorage.getItem('longrUnlocked') || '[]');
+                const uname = localStorage.getItem('longrUserName');
+                const score = localStorage.getItem('longrScore');
+                const banner = document.getElementById('welcomeBanner');
+                if (banner) {
+                    banner.style.display = 'inline-block';
+                    banner.textContent = uname
+                        ? `🎉 Welcome back, ${uname} — Longevity Score ${score}/100 · 4 articles unlocked below`
+                        : `🎉 Longevity Score ${score}/100 · 4 articles unlocked below`;
+                }
+            } else {
+                window.longrUnlockedIds = [];
+            }
+        } catch (e) { window.longrUnlockedIds = []; }
+
+        createCategoryButtons();
+        displayExperiences(experiences);
+
+        // ---- FAQ accordion ----
+        const faqs = [
+            { q: "Is LONGR actually free?", a: "Yes. The full feed, your Longevity Score, and your 7-Day Eat-Right Plan are all free — no card required." },
+            { q: "Do I need to follow a specific diet?", a: "No. LONGR isn't a diet plan — it's science-backed swaps you layer onto however you already eat, whether that's balanced, vegan, keto, or anything else." },
+            { q: "How is the Longevity Score calculated?", a: "It's based on your goals, current eating pattern, activity level, and a few other quick answers from the onboarding quiz — it's a directional score, not a medical diagnosis." },
+            { q: "Is this medical advice?", a: "No. LONGR shares general nutrition education, not personalized medical advice. Always check with a doctor for anything related to a specific health condition." },
+            { q: "How often is new content added?", a: "New articles roll into the feed daily across all 30+ categories, and your unlocked picks refresh as you engage." },
+            { q: "Can I unsubscribe from emails anytime?", a: "Always — one tap, no questions asked, and we never sell your data." }
+        ];
+        function renderFaq() {
+            const list = document.getElementById('faqList');
+            if (!list) return;
+            list.innerHTML = '';
+            faqs.forEach((f, i) => {
+                const item = document.createElement('div');
+                item.className = 'faq-item';
+                item.innerHTML = `
+                    <div class="faq-question">${f.q}<span class="chevron">⌄</span></div>
+                    <div class="faq-answer">${f.a}</div>
+                `;
+                item.querySelector('.faq-question').onclick = () => item.classList.toggle('open');
+                list.appendChild(item);
+            });
+        }
+        renderFaq();
+
+        // ---- Footer email capture ----
+        function footerSubscribe() {
+            const input = document.getElementById('footerEmail');
+            const msg = document.getElementById('footerMsg');
+            const val = input.value.trim();
+            if (!val.includes('@') || val.length < 5) {
+                msg.textContent = 'Enter a valid email to get weekly tips.';
+                msg.style.color = '#ff6b6b';
+                return;
+            }
+            msg.textContent = "🎉 You're in — first tip lands in your inbox this week.";
+            msg.style.color = '#22FF00';
+            input.value = '';
+        }
+
+        // Scroll categories one "page" to the right on click; loop back at the end
+        document.getElementById('categoriesNext').addEventListener('click', () => {
+            const row = document.getElementById('categories');
+            const maxScroll = row.scrollWidth - row.clientWidth;
+            if (row.scrollLeft >= maxScroll - 5) {
+                row.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                row.scrollBy({ left: row.clientWidth * 0.8, behavior: 'smooth' });
+            }
+        });
+
+        // Longevity nutrition promo popup
+        function closePromo() {
+            document.getElementById('longevityPopup').classList.remove('open');
+        }
+        document.getElementById('longevityPopup').addEventListener('click', (e) => {
+            if (e.target.id === 'longevityPopup') closePromo();
+        });
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('longevityPopup').classList.add('open');
+            }, 2500);
+        });
+    </script>
+
+</body>
+</html>

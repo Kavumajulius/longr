@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // The LONGR site reads articles server-side through the Firebase Admin
+    // SDK, which bypasses these rules. No client SDK is used for article
+    // reads, so all browser access to content is denied by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Each user profile created during onboarding lives at /users/{uid}.
+    // The signed-in user may read and update only their own document.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

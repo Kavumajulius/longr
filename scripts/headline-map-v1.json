@@ -1,0 +1,1022 @@
+[
+ {
+  "id": 1,
+  "file": "cardio.ts",
+  "old": "A 10-Minute Walk After Meals: The Simple Habit That Helps Steady Blood Sugar at 50",
+  "new": "Blood Sugar Spikes at 50? When You Walk After Meals May Matter as Much as What You Ate"
+ },
+ {
+  "id": 2,
+  "file": "cardio.ts",
+  "old": "Zone 2 Cardio Without the Breathlessness: The Heart Habit Worth Building at 55",
+  "new": "Over 55? The Cardio That Feels 'Too Easy to Count' May Be the One You're Missing"
+ },
+ {
+  "id": 3,
+  "file": "cardio.ts",
+  "old": "No Gym, No Treadmill: Stairs and Hills Are Honest Cardio After 60",
+  "new": "No Gym After 60? Stairs and Hills Are the Free Cardio That Also Builds Independence"
+ },
+ {
+  "id": 4,
+  "file": "cardio.ts",
+  "old": "Sore Joints Putting You Off Cardio? 6 Low-Impact Swaps to Stay Moving at 50",
+  "new": "Knees or Hips Complaining at 50? 6 Low-Impact Cardio Swaps That Keep You Moving"
+ },
+ {
+  "id": 5,
+  "file": "cardio.ts",
+  "old": "What to Drink Before, During, and After a Cardio Session at 50",
+  "new": "Cardio at 50: What You Drink Before, During, and After May Be Sabotaging the Session"
+ },
+ {
+  "id": 6,
+  "file": "strength.ts",
+  "old": "Want to Hold Muscle as You Age? Start With These Breakfast Proteins at 50",
+  "new": "What to Put on the Breakfast Plate at 50 If You Want to Stay Strong at 70"
+ },
+ {
+  "id": 7,
+  "file": "strength.ts",
+  "old": "Your Independent Future Self May Thank You for Two Strength Sessions a Week at 55",
+  "new": "Your 70-Year-Old Self May Thank You for Two Strength Sessions a Week at 55"
+ },
+ {
+  "id": 8,
+  "file": "strength.ts",
+  "old": "Grip Strength After 60: Lifting Groceries and Grandchildren Counts as Training",
+  "new": "The Strength Signal You're Already Training at 60: Grip, Groceries, and Grandchildren"
+ },
+ {
+  "id": 9,
+  "file": "strength.ts",
+  "old": "Still Saving All Your Protein for Dinner? At 55, Every Meal Is the Better Pattern",
+  "new": "Still Saving All Your Protein for Dinner at 55? Every Meal Is the Better Pattern"
+ },
+ {
+  "id": 10,
+  "file": "strength.ts",
+  "old": "Recovering From Strength Training After 50: Sleep, Protein, and Magnesium Do the Work",
+  "new": "Strength Training at 50? Sleep, Protein, and Magnesium Do the Rebuilding Work"
+ },
+ {
+  "id": 11,
+  "file": "recovery.ts",
+  "old": "Before Reaching for Recovery Supplements at 50, Check Your Sleep First",
+  "new": "Before Reaching for Recovery Supplements at 50, Fix These 5 Sleep Habits First"
+ },
+ {
+  "id": 12,
+  "file": "recovery.ts",
+  "old": "Just Finished a Workout at 50? Greek Yogurt, Eggs, and Salmon Help You Rebuild",
+  "new": "Just Finished a Workout at 50? Greek Yogurt, Eggs, and Salmon Help You Rebuild"
+ },
+ {
+  "id": 13,
+  "file": "recovery.ts",
+  "old": "Rest Days at 60 Don't Mean Doing Nothing: A Brisk Walk Is Active Recovery",
+  "new": "Rest Days at 60 Don't Mean Doing Nothing — a Brisk Walk Is Active Recovery"
+ },
+ {
+  "id": 14,
+  "file": "recovery.ts",
+  "old": "Pumpkin Seeds, Bananas, and Greens: Evening Magnesium for Muscle Recovery at 55",
+  "new": "Evening Magnesium at 55: 5 Foods That Support Muscle Recovery While You Sleep"
+ },
+ {
+  "id": 15,
+  "file": "recovery.ts",
+  "old": "Stretching for Mobility After 50? These Foods Pair With It for Better Recovery",
+  "new": "Stretching for Mobility at 50? Pair It With These 5 Habits for Better Recovery"
+ },
+ {
+  "id": 16,
+  "file": "nutrition.ts",
+  "old": "At 50, One Plate Rule Does Most of the Work: Half Vegetables, Quarter Protein, Quarter Grain",
+  "new": "Forget the Counting at 50: Half Vegetables, Quarter Protein, Quarter Grain Does Most of the Work"
+ },
+ {
+  "id": 17,
+  "file": "nutrition.ts",
+  "old": "Eating the Same Few Foods Every Week? Colour Variety on the Plate Matters After 50",
+  "new": "Eating the Same Few Foods Every Week at 50? Colour Variety on the Plate Matters"
+ },
+ {
+  "id": 18,
+  "file": "nutrition.ts",
+  "old": "White Bread, White Rice, White Pasta? 5 Whole-Grain Swaps Worth Making at 50",
+  "new": "White Bread, White Rice, White Pasta? 5 Whole-Grain Swaps That Change the Plate at 50"
+ },
+ {
+  "id": 19,
+  "file": "nutrition.ts",
+  "old": "Fat Isn't the Enemy After 50: Olive Oil, Nuts, and Fish Are the Fats Worth Choosing",
+  "new": "Fat Isn't the Enemy After 50 — but the Type on Your Plate Matters More Than You Think"
+ },
+ {
+  "id": 20,
+  "file": "nutrition.ts",
+  "old": "Busy Weeknights Undoing Your Good Intentions? Sunday Meal Prep at 55 Fixes That",
+  "new": "Too Tired to Cook on Weeknights at 55? One Sunday Hour Beats the 6 P.M. Rush"
+ },
+ {
+  "id": 21,
+  "file": "mindfulness.ts",
+  "old": "Eating on Autopilot? Slowing Down After 50 Changes How Much You Enjoy — and Eat",
+  "new": "Eating on Autopilot at 50? Slowing Down Changes How Much You Enjoy — and Eat"
+ },
+ {
+  "id": 22,
+  "file": "mindfulness.ts",
+  "old": "Put the Phone Down at Dinner: Eating Without Screens Changes What You Choose",
+  "new": "Put the Phone Down at Dinner: Eating Without Screens Changes What You Choose"
+ },
+ {
+  "id": 23,
+  "file": "mindfulness.ts",
+  "old": "The Fullness Habit You're Missing at 55? Chewing Slowly Is the Simplest Fix",
+  "new": "The Fullness Signal You're Missing at 55? Chewing Slowly Is the Fix"
+ },
+ {
+  "id": 24,
+  "file": "mindfulness.ts",
+  "old": "Noticing You Eat More When Stressed? Here's How to Tell It Apart From True Hunger at 50",
+  "new": "Stress-Eating at 50? Why the Crash After Sugary Food May Be Driving It"
+ },
+ {
+  "id": 25,
+  "file": "mindfulness.ts",
+  "old": "A Quiet Minute Before Dinner: The Gratitude-Style Ritual That Guides Better Choices at 50",
+  "new": "A Quiet Minute Before Dinner at 50: The Ritual That Steers Better Choices"
+ },
+ {
+  "id": 26,
+  "file": "sleep.ts",
+  "old": "Caffeine Lingers Longer at 50: When to Stop Coffee and Tea for Better Sleep",
+  "new": "Caffeine Lingers Longer at 50: When to Stop Coffee and Tea for Better Sleep"
+ },
+ {
+  "id": 27,
+  "file": "sleep.ts",
+  "old": "That Evening Glass of Wine After 50 May Be Costing You Deep Sleep",
+  "new": "That Evening Glass of Wine at 50 May Be Costing You Deep Sleep"
+ },
+ {
+  "id": 28,
+  "file": "sleep.ts",
+  "old": "Struggling to Sleep? Kiwi, Yogurt, and Tart Cherry Are Worth a Try at 50",
+  "new": "Struggling to Sleep at 50? Kiwi, Yogurt, and Tart Cherry May Be the Pre-Bed Helpers"
+ },
+ {
+  "id": 29,
+  "file": "sleep.ts",
+  "old": "The Magnesium-Rich Wind-Down: An Evening Routine That May Help You Sleep at 55",
+  "new": "The Magnesium-Rich Wind-Down at 55: 5 Foods That May Support Better Sleep"
+ },
+ {
+  "id": 30,
+  "file": "sleep.ts",
+  "old": "Sleeping Worse After 60? That Heavy Late Dinner Is Worth Reconsidering",
+  "new": "Sleeping Worse After 60? That Heavy Late Dinner May Be Why"
+ },
+ {
+  "id": 31,
+  "file": "longevity.ts",
+  "old": "The Mediterranean Way of Eating: A Longevity Blueprint Worth Following at 50",
+  "new": "The Mediterranean Way at 50: 5 Patterns Most People Think They Follow (but Don't)"
+ },
+ {
+  "id": 32,
+  "file": "longevity.ts",
+  "old": "Want to Support Healthy Ageing? Aim for 30 Different Plants a Week at 50",
+  "new": "Want to Support Healthy Ageing at 50? 30 Different Plants a Week Is the Goal"
+ },
+ {
+  "id": 33,
+  "file": "longevity.ts",
+  "old": "Protein on the Plate After 60: Protecting Muscle and Independence, Meal by Meal",
+  "new": "Protein at 60: What to Put on the Plate If You Want to Stay Independent at 75"
+ },
+ {
+  "id": 34,
+  "file": "longevity.ts",
+  "old": "Eating Enough, Not Too Much: The Unboring Longevity Lever at 50",
+  "new": "The Longevity Lever That's Easier Than Counting Calories at 50: Eating Enough, Not Too Much"
+ },
+ {
+  "id": 35,
+  "file": "longevity.ts",
+  "old": "One of the Smarter Ageing Habits After 50? Fatty Fish and Omega-3s",
+  "new": "The Omega-3 Habit That Keeps Showing Up in Longevity Research: Fatty Fish After 50"
+ },
+ {
+  "id": 36,
+  "file": "gut-health.ts",
+  "old": "A More Diverse Gut After 50 Starts With 30 Plants a Week",
+  "new": "A More Diverse Gut at 50: Why 30 Plants a Week Beats Any Single 'Gut Superfood'"
+ },
+ {
+  "id": 37,
+  "file": "gut-health.ts",
+  "old": "Kefir, Yogurt, Sauerkraut, and Kimchi: Friendly Microbes Worth Adding at 50",
+  "new": "Kefir, Yogurt, Sauerkraut, and Kimchi: The Fermented Foods Your Gut at 50 May Appreciate"
+ },
+ {
+  "id": 38,
+  "file": "gut-health.ts",
+  "old": "Feed the Microbes You Already Have: Oats, Onions, Garlic, and Bananas After 50",
+  "new": "Oats, Onions, Garlic, and Bananas at 50: Feeding the Microbes You Already Have"
+ },
+ {
+  "id": 39,
+  "file": "gut-health.ts",
+  "old": "Ultra-Processed Food and Your Gut at 50: What to Reduce, What to Add",
+  "new": "Ultra-Processed Food and Your Gut at 50: 5 Swaps to Turn It Down"
+ },
+ {
+  "id": 40,
+  "file": "gut-health.ts",
+  "old": "Regularity Struggles After 50? Fibre Needs Water — Here's How to Pair Them",
+  "new": "Regularity Struggles at 50? Fibre Needs Water — the Pairing Takes Practice"
+ },
+ {
+  "id": 41,
+  "file": "hydration.ts",
+  "old": "Still Reaching for Sugary or Diet Drinks? Why Water Deserves the Swap at 50",
+  "new": "Still Reaching for Sugary or Diet Drinks at 50? Water Deserves the Swap"
+ },
+ {
+  "id": 42,
+  "file": "hydration.ts",
+  "old": "Thirst Gets Quieter With Age: How to Read Your Hydration Cues After 55",
+  "new": "Thirst Gets Quieter With Age: 5 Hydration Cues People Over 55 Miss"
+ },
+ {
+  "id": 43,
+  "file": "hydration.ts",
+  "old": "Water Isn't the Only Way: 6 Hydrating Foods Worth Eating More of at 55",
+  "new": "Water Isn't the Only Way: 5 Hydrating Foods to Eat More of at 55"
+ },
+ {
+  "id": 44,
+  "file": "hydration.ts",
+  "old": "Exercising in the Heat at 60? These 5 Electrolyte Habits Keep You Steady",
+  "new": "Exercising in the Heat at 60? These 5 Electrolyte Habits Keep You Steady"
+ },
+ {
+  "id": 45,
+  "file": "hydration.ts",
+  "old": "Does Coffee Dehydrate You? Balancing Caffeine and Water After 50",
+  "new": "Does Coffee Dehydrate You at 50? The Caffeine-Water Balance Most People Get Wrong"
+ },
+ {
+  "id": 46,
+  "file": "fasting.ts",
+  "old": "Fasting Feels Intimidating? A 12-Hour Overnight Break Is the Gentlest Start at 50",
+  "new": "Fasting Feels Intimidating at 50? A 12-Hour Overnight Break Is the Gentlest Start"
+ },
+ {
+  "id": 47,
+  "file": "fasting.ts",
+  "old": "How You Break Your Fast After 50 Sets the Day: Protein, Fibre, and Vegetables First",
+  "new": "How You Break a Fast at 50 Sets the Day: 5 First-Bite Mistakes to Avoid"
+ },
+ {
+  "id": 48,
+  "file": "fasting.ts",
+  "old": "Prediabetes and Fasting: What People Over 50 Should Know Before Starting",
+  "new": "Prediabetes and Fasting: 5 Things to Know Before You Start at 50"
+ },
+ {
+  "id": 49,
+  "file": "fasting.ts",
+  "old": "Fasting After 50? Why Hydration Matters in Every Fasting Window",
+  "new": "Fasting at 50? Water Is the Rule Most People Break First"
+ },
+ {
+  "id": 50,
+  "file": "fasting.ts",
+  "old": "Considering Fasting at 60? These 6 Medical Caveats Are Worth Reading First",
+  "new": "Considering Fasting at 60? These 5 Medical Caveats Come First"
+ },
+ {
+  "id": 51,
+  "file": "anti-inflammatory.ts",
+  "old": "Salmon, Walnuts, and Flaxseed: The Omega-3 Foods for a Calmer Inflammatory Balance at 50",
+  "new": "Salmon, Walnuts, and Flaxseed at 50: The Omega-3 Foods That Do More Than Pills"
+ },
+ {
+  "id": 52,
+  "file": "anti-inflammatory.ts",
+  "old": "7 Colourful Fruits and Vegetables That Do More Than Look Pretty After 50",
+  "new": "The 5 Colour Families That Do More Than Look Pretty at 50"
+ },
+ {
+  "id": 53,
+  "file": "anti-inflammatory.ts",
+  "old": "Skip the Turmeric Shots: Real Cooking With Turmeric and Ginger Does More at 50",
+  "new": "Skip the Turmeric Shots at 50: Real Cooking With Turmeric and Ginger Does More"
+ },
+ {
+  "id": 54,
+  "file": "anti-inflammatory.ts",
+  "old": "The One Fat Worth Defaulting To After 55: Extra-Virgin Olive Oil",
+  "new": "The One Fat to Default To After 55: Extra-Virgin Olive Oil"
+ },
+ {
+  "id": 55,
+  "file": "anti-inflammatory.ts",
+  "old": "Cutting Ultra-Processed Foods and Added Sugar? Start With These 6 Swaps at 50",
+  "new": "Cutting Ultra-Processed Food at 50? Start With These 5 Swaps"
+ },
+ {
+  "id": 56,
+  "file": "heart-health.ts",
+  "old": "Watching Blood Pressure at 50? 7 Potassium-Rich Foods Worth Knowing",
+  "new": "Worried About Blood Pressure at 50? Start With These 5 Potassium-Rich Foods"
+ },
+ {
+  "id": 57,
+  "file": "heart-health.ts",
+  "old": "Supporting Healthier Cholesterol at 55? Oats, Barley, and These 6 Foods Help",
+  "new": "5 Things Everyone Over 55 Should Know About Eating for Healthier Cholesterol"
+ },
+ {
+  "id": 58,
+  "file": "heart-health.ts",
+  "old": "One of the Smartest Heart Habits at 60: Fatty Fish Twice a Week",
+  "new": "One of the Smartest Heart Habits at 60: Fatty Fish Twice a Week"
+ },
+ {
+  "id": 59,
+  "file": "heart-health.ts",
+  "old": "Sodium Is Hiding in 'Healthy' Meals: 7 Traps Worth Knowing After 50",
+  "new": "Sodium Is Hiding in 'Healthy' Meals: 5 Traps People Over 50 Miss"
+ },
+ {
+  "id": 60,
+  "file": "heart-health.ts",
+  "old": "Replacing Red Meat 3 Days a Week at 55: A Simple Way to Support Your Heart",
+  "new": "Replacing Red Meat 3 Days a Week at 55: 5 Ways to Support Your Heart"
+ },
+ {
+  "id": 61,
+  "file": "brain-health.ts",
+  "old": "Berries: The Everyday Brain Food Worth Adding to the Plate at 50",
+  "new": "Berries at 50: The Everyday Brain Food You Can Add Without Giving Anything Up"
+ },
+ {
+  "id": 62,
+  "file": "brain-health.ts",
+  "old": "Fatty Fish Twice a Week After 55: Supporting Your Aging Brain at the Table",
+  "new": "Fatty Fish Twice a Week After 55: One of the Best-Supported Brain Habits at the Table"
+ },
+ {
+  "id": 63,
+  "file": "brain-health.ts",
+  "old": "Leafy Greens at 50: The Vegetable Most Linked to Slower Cognitive Decline",
+  "new": "Leafy Greens at 50: The Vegetable Most Linked to Slower Cognitive Decline"
+ },
+ {
+  "id": 64,
+  "file": "brain-health.ts",
+  "old": "Want to Keep Your Memory Sharp? A MIND-Style Eating Pattern Is Worth Trying at 55",
+  "new": "Keeping Your Memory Sharp at 55? The MIND-Style Pattern, Built Meal by Meal"
+ },
+ {
+  "id": 65,
+  "file": "brain-health.ts",
+  "old": "Mild Dehydration After 50: The Quiet Cloud Over Your Focus and Memory",
+  "new": "Mild Dehydration at 50: The Quiet Cloud Over Your Focus and Memory"
+ },
+ {
+  "id": 66,
+  "file": "immunity.ts",
+  "old": "Boiling the Vitamin C Away? 6 Foods Worth Cooking the Right Way After 50",
+  "new": "Boiling Vegetables at 50? You May Be Cooking the Vitamin C Away"
+ },
+ {
+  "id": 67,
+  "file": "immunity.ts",
+  "old": "Zinc at 55: Seeds, Legumes, and Shellfish That Support Immune Function",
+  "new": "Zinc at 55: The Seeds, Legumes, and Shellfish That Support Immunity"
+ },
+ {
+  "id": 68,
+  "file": "immunity.ts",
+  "old": "Protein at Every Meal: Supporting Your Immune System After 50",
+  "new": "After 50, Protein Does More Than Build Muscle: It Supports Immunity Meal by Meal"
+ },
+ {
+  "id": 69,
+  "file": "immunity.ts",
+  "old": "Vitamin D at 50: Sunlight, Foods, and When Supplements Make Sense",
+  "new": "Vitamin D at 50: 5 Things Most People Get Wrong About Food, Sun, and Supplements"
+ },
+ {
+  "id": 70,
+  "file": "immunity.ts",
+  "old": "Immune Support After 50 Goes Beyond Food: Sleep, Stress, and Ferments Count",
+  "new": "Immune Support at 50 Goes Beyond Food: Sleep, Stress, and Ferments Count"
+ },
+ {
+  "id": 71,
+  "file": "hormone-balance.ts",
+  "old": "The Calm Case for Whole Soy Foods During Menopause",
+  "new": "The Calm Case for Whole Soy During Menopause"
+ },
+ {
+  "id": 72,
+  "file": "hormone-balance.ts",
+  "old": "Steadier Hormones and Blood Sugar After 45? Fibre at Breakfast Is the Start",
+  "new": "Steadier Hormones and Blood Sugar After 45? Fibre at Breakfast Is the Start"
+ },
+ {
+  "id": 73,
+  "file": "hormone-balance.ts",
+  "old": "Healthy Fats From Olive Oil, Nuts, and Fish: Supporting Hormones at 50",
+  "new": "Olive Oil, Nuts, and Fish at 50: The Fats Your Hormones May Be Missing"
+ },
+ {
+  "id": 74,
+  "file": "hormone-balance.ts",
+  "old": "Perimenopause at 45? Why Protein Belongs at Every Meal Now",
+  "new": "Perimenopause at 45? Protein Belongs at Every Meal Now"
+ },
+ {
+  "id": 75,
+  "file": "hormone-balance.ts",
+  "old": "Sleep Through Menopause Changes? Magnesium-Rich Foods May Help at 45",
+  "new": "Sleeping Through Menopause Changes at 45? Magnesium-Rich Foods May Help"
+ },
+ {
+  "id": 76,
+  "file": "skin-health.ts",
+  "old": "Vitamin C Foods Like Peppers and Kiwi: Supporting Skin Collagen at 40",
+  "new": "Peppers, Kiwi, and Vitamin C at 40: The Foods That Feed Skin Collagen"
+ },
+ {
+  "id": 77,
+  "file": "skin-health.ts",
+  "old": "Hydrated Skin at 40 Starts With Water — and These 5 Water-Rich Foods",
+  "new": "Hydrated Skin at 40 Starts With Water — and These 5 Water-Rich Foods"
+ },
+ {
+  "id": 78,
+  "file": "skin-health.ts",
+  "old": "Avocado, Olive Oil, and Oily Fish: Skin's Underrated Allies at 45",
+  "new": "Avocado, Olive Oil, and Oily Fish at 45: Skin's Underrated Allies"
+ },
+ {
+  "id": 79,
+  "file": "skin-health.ts",
+  "old": "Colourful Produce After 50: Antioxidants That May Slow Visible Skin Ageing",
+  "new": "Colourful Produce After 50: Antioxidants That May Slow Visible Skin Ageing"
+ },
+ {
+  "id": 80,
+  "file": "skin-health.ts",
+  "old": "For Your Skin at 40, Cutting Added Sugar May Be the Smartest Move",
+  "new": "For Your Skin at 40, Cutting Added Sugar May Be the Smartest Move"
+ },
+ {
+  "id": 81,
+  "file": "bone-health.ts",
+  "old": "Stronger Bones at 50: Calcium-Rich Foods Worth Adding to the Plate",
+  "new": "Stronger Bones at 50: 5 Calcium-Rich Foods to Add to the Plate"
+ },
+ {
+  "id": 82,
+  "file": "bone-health.ts",
+  "old": "Vitamin D Isn't Optional After 50: Here's Where to Get It Now",
+  "new": "Vitamin D Isn't Optional After 50: Where Food, Sun, and Supplements Fit"
+ },
+ {
+  "id": 83,
+  "file": "bone-health.ts",
+  "old": "Enough Protein at Meals After 55: Supporting Muscle and Bone Together",
+  "new": "Muscle and Bone at 55: Why Protein at Every Meal Does Double Duty"
+ },
+ {
+  "id": 84,
+  "file": "bone-health.ts",
+  "old": "Calcium Needs Helpers: Vitamin K Greens and Magnesium Do the Job at 50",
+  "new": "Calcium Needs Helpers at 50: Vitamin K Greens and Magnesium Do the Job"
+ },
+ {
+  "id": 85,
+  "file": "bone-health.ts",
+  "old": "Bone Responds to Load: Pair Calcium-Rich Food With These Activities at 55",
+  "new": "Bone Responds to Load at 55: Pair Calcium-Rich Food With These 5 Activities"
+ },
+ {
+  "id": 86,
+  "file": "metabolism.ts",
+  "old": "Protein at Every Meal After 50: Supporting Muscle and Metabolism",
+  "new": "Metabolism Slows After 50? Protein at Every Meal May Be the Counter-Move"
+ },
+ {
+  "id": 87,
+  "file": "metabolism.ts",
+  "old": "Energy Crashes and Cravings After 50? Replacing Refined Carbs With Fibre Helps",
+  "new": "Energy Crashes at 50? Replacing Refined Carbs With Fibre May Help"
+ },
+ {
+  "id": 88,
+  "file": "metabolism.ts",
+  "old": "Extra-Virgin Olive Oil at 50: The Trick Is Replacing, Not Adding",
+  "new": "Extra-Virgin Olive Oil at 50: The Trick Is Replacing, Not Adding"
+ },
+ {
+  "id": 89,
+  "file": "metabolism.ts",
+  "old": "Food and Movement Work Together: Muscle-Supporting Meals at 50",
+  "new": "At 50, Food and Movement Work as a Team: 5 Ways Meals Support Muscle"
+ },
+ {
+  "id": 90,
+  "file": "metabolism.ts",
+  "old": "Regular Meal Timing After 50 Starts With a Protein-Rich Breakfast",
+  "new": "A Protein-Rich Breakfast at 50: The Anchor Your Daily Meal Rhythm Needs"
+ },
+ {
+  "id": 91,
+  "file": "weight-management.ts",
+  "old": "Feel Full Without Measuring: The Half-Plate Rule at 50",
+  "new": "Feel Full Without Measuring at 50: Fill Half the Plate First"
+ },
+ {
+  "id": 92,
+  "file": "weight-management.ts",
+  "old": "Why Protein Keeps You Full at 50 — and Where to Get It",
+  "new": "Protein Keeps You Full at 50: 5 Foods That Do It Without Bars or Shakes"
+ },
+ {
+  "id": 93,
+  "file": "weight-management.ts",
+  "old": "Smaller Portions That Feel Satisfying? Start With Fibre-Rich Foods at 50",
+  "new": "Smaller Portions That Feel Satisfying at 50? Start With Fibre-Rich Foods"
+ },
+ {
+  "id": 94,
+  "file": "weight-management.ts",
+  "old": "Liquid Calories After 50: The Juice and Sweet Drinks That Add Up Quietly",
+  "new": "Liquid Calories at 50: The Juice and Sweet Drinks That Add Up Quietly"
+ },
+ {
+  "id": 95,
+  "file": "weight-management.ts",
+  "old": "The 20-Minute Fullness Signal at 50: Why Pacing the Meal Matters",
+  "new": "The 20-Minute Fullness Signal at 50: Why Pacing the Meal Matters"
+ },
+ {
+  "id": 96,
+  "file": "stress-relief.ts",
+  "old": "Magnesium-Rich Foods Like Pumpkin Seeds: Supporting Calm at 50",
+  "new": "Feeling Frazzled at 50? Magnesium-Rich Foods Like Pumpkin Seeds May Help You Unwind"
+ },
+ {
+  "id": 97,
+  "file": "stress-relief.ts",
+  "old": "Stress Resilience at 50: Why Omega-3 Foods Are Worth Knowing",
+  "new": "Stress Resilience at 50: The Omega-3 Foods That Earn Their Place on the Plate"
+ },
+ {
+  "id": 98,
+  "file": "stress-relief.ts",
+  "old": "Feeling Wired and On Edge? Herbal Tea and a Caffeine Cutoff at 50 Help",
+  "new": "Feeling Wired at 50? A Caffeine Cutoff and Herbal Tea May Help"
+ },
+ {
+  "id": 99,
+  "file": "stress-relief.ts",
+  "old": "Constant Grazing Keeps You On Edge? Warm Cooked Meals at 50 Steady You",
+  "new": "Constant Grazing Keeps You on Edge at 50? Warm Cooked Meals Steady You"
+ },
+ {
+  "id": 100,
+  "file": "stress-relief.ts",
+  "old": "The Stress-Fueled Crash After 50: Steadier Blood Sugar Is the Antidote",
+  "new": "The Stress-Fueled Crash at 50: Steadier Blood Sugar Is the Antidote"
+ },
+ {
+  "id": 101,
+  "file": "breathwork.ts",
+  "old": "What You Eat Before Breathwork After 50 Changes How the Session Feels",
+  "new": "Breathwork at 50: What You Ate Before the Session Changes How It Feels"
+ },
+ {
+  "id": 102,
+  "file": "breathwork.ts",
+  "old": "Breathwork Feels Harder Than It Should? Hydrate Before the Session at 50",
+  "new": "Breathwork Feels Harder Than It Should at 50? Hydrate First"
+ },
+ {
+  "id": 103,
+  "file": "breathwork.ts",
+  "old": "Breathing for Calm but Still Jittery? Swap These Caffeine Foods After 50",
+  "new": "Breathing for Calm but Still Jittery at 50? Swap These Caffeine Foods"
+ },
+ {
+  "id": 104,
+  "file": "breathwork.ts",
+  "old": "Digestion After 50: How Breathing Pauses at Meals Help",
+  "new": "Digestion After 50: How Breathing Pauses at Meals Help"
+ },
+ {
+  "id": 105,
+  "file": "breathwork.ts",
+  "old": "After a Deep-Breathing Session at 50: These Foods Help Your Body Settle",
+  "new": "After a Deep-Breathing Session at 50: These 5 Eating Habits Help Your Body Settle"
+ },
+ {
+  "id": 106,
+  "file": "yoga.ts",
+  "old": "Yoga Class Timing Made Simple After 50: What to Eat Before and After",
+  "new": "Yoga Class at 50: The Before-and-After Eating Timing Most People Get Wrong"
+ },
+ {
+  "id": 107,
+  "file": "yoga.ts",
+  "old": "Flexibility Is Built on Strength: How Protein Fits Into Yoga at 50",
+  "new": "Flexibility Is Built on Strength at 50: How Protein Fits Into Yoga"
+ },
+ {
+  "id": 108,
+  "file": "yoga.ts",
+  "old": "Hydration on Yoga Days at 50: What to Drink Before, During, and After Class",
+  "new": "Hydration on Yoga Days at 50: What to Drink (and Skip) Before, During, and After Class"
+ },
+ {
+  "id": 109,
+  "file": "yoga.ts",
+  "old": "Morning Stiffness Before Yoga? Anti-Inflammatory Foods at 50 Help",
+  "new": "Morning Stiffness Before Yoga at 50? Anti-Inflammatory Foods Help"
+ },
+ {
+  "id": 110,
+  "file": "yoga.ts",
+  "old": "Post-Yoga Meals: How to Eat After Class Without Undoing the Calm",
+  "new": "Post-Yoga Meals: How to Eat After Class Without Undoing the Calm"
+ },
+ {
+  "id": 111,
+  "file": "mobility.ts",
+  "old": "Omega-3s and Olive Oil at 50: Foods That Support Comfortable Joints",
+  "new": "Achy Joints at 50? Omega-3 Foods and Olive Oil May Make Movement Easier"
+ },
+ {
+  "id": 112,
+  "file": "mobility.ts",
+  "old": "Getting Up From the Floor at 60? Protein Is the Strength Behind It",
+  "new": "Getting Up From the Floor at 60? Protein Is the Strength Behind It"
+ },
+ {
+  "id": 113,
+  "file": "mobility.ts",
+  "old": "Supple Movement Needs Water: Hydration Is Part of Mobility at 55",
+  "new": "Supple Movement Needs Water: Hydration Is Part of Mobility at 55"
+ },
+ {
+  "id": 114,
+  "file": "mobility.ts",
+  "old": "Calcium and Vitamin D at 50: The Bone Support Behind Mobility",
+  "new": "Mobility at 50 Starts With Bones: Why Calcium and Vitamin D Are the Foundation"
+ },
+ {
+  "id": 115,
+  "file": "mobility.ts",
+  "old": "Staying Flexible at 60: Why an Anti-Inflammatory Plate Is Worth Building",
+  "new": "Staying Flexible at 60? Build the Anti-Inflammatory Plate First"
+ },
+ {
+  "id": 116,
+  "file": "supplements.ts",
+  "old": "Vitamin D From Food First at 50: 7 Everyday Sources Worth Knowing",
+  "new": "Vitamin D at 50: 5 Food Sources to Consider Before the Pill Bottle"
+ },
+ {
+  "id": 117,
+  "file": "supplements.ts",
+  "old": "Before Buying Fish Oil Pills at 55, Read This About Food-First Omega-3s",
+  "new": "Before Buying Fish Oil Pills at 55, Read This About Food-First Omega-3s"
+ },
+ {
+  "id": 118,
+  "file": "supplements.ts",
+  "old": "Protein From Real Food, Not Powders: The Smarter Default at 50",
+  "new": "Protein From Real Food, Not Powders: The Smarter Default at 50"
+ },
+ {
+  "id": 119,
+  "file": "supplements.ts",
+  "old": "Nuts, Greens, and Beans Before Pills: The Magnesium Route at 50",
+  "new": "Nuts, Greens, and Beans Before Pills: The Magnesium Route at 50"
+ },
+ {
+  "id": 120,
+  "file": "supplements.ts",
+  "old": "Before Buying Supplements at 55, Ask These 4 Questions With Your Clinician",
+  "new": "Before Buying Supplements at 55, Ask These 5 Things First"
+ },
+ {
+  "id": 121,
+  "file": "superfoods.ts",
+  "old": "Rotating Berries Beats Chasing One 'Super' Berry at 55 — Here's Why",
+  "new": "Rotating Berries Beats Chasing One 'Super' Berry at 55"
+ },
+ {
+  "id": 122,
+  "file": "superfoods.ts",
+  "old": "These 5 Leafy Greens at 50 Bring More to the Table Than You Think",
+  "new": "These 5 Leafy Greens at 50 Bring More to the Table Than You Think"
+ },
+ {
+  "id": 123,
+  "file": "superfoods.ts",
+  "old": "The Closest Thing to a Real Superfood Habit at 60: Two Fatty Fish Meals a Week",
+  "new": "The Closest Thing to a Real Superfood Habit at 60: Two Fatty Fish Meals a Week"
+ },
+ {
+  "id": 124,
+  "file": "superfoods.ts",
+  "old": "Yogurt, Kimchi, and Miso at 50: Fermented Foods That Support a Healthier Gut",
+  "new": "Yogurt, Kimchi, and Miso at 50: Fermented Foods That Support a Healthier Gut"
+ },
+ {
+  "id": 125,
+  "file": "superfoods.ts",
+  "old": "A Small Handful of Nuts and Seeds at 55 Goes Further Than You'd Expect",
+  "new": "A Small Handful of Nuts and Seeds at 55 Goes Further Than You'd Expect"
+ },
+ {
+  "id": 126,
+  "file": "plant-based.ts",
+  "old": "Plant-Forward at 50 Without Losing Flavour: The Plate Structure That Works",
+  "new": "Plant-Forward at 50 Without Losing Flavour: The Plate Structure That Works"
+ },
+ {
+  "id": 127,
+  "file": "plant-based.ts",
+  "old": "Getting Enough Protein Plant-Based at 55 Is Easier Than It Sounds",
+  "new": "Getting Enough Protein Plant-Based at 55 Is Easier Than It Sounds"
+ },
+ {
+  "id": 128,
+  "file": "plant-based.ts",
+  "old": "Plant Iron Absorbs Better With Vitamin C: 7 Pairings Worth Trying at 50",
+  "new": "Plant Iron Absorbs Better With Vitamin C: 5 Pairings to Try at 50"
+ },
+ {
+  "id": 129,
+  "file": "plant-based.ts",
+  "old": "Calcium Without Dairy at 55: Fortified Soy, Greens, and Almonds Have You Covered",
+  "new": "Calcium Without Dairy at 55: Fortified Soy, Greens, and Almonds Have You Covered"
+ },
+ {
+  "id": 130,
+  "file": "plant-based.ts",
+  "old": "Going Plant-Based at 60? These 6 Meals Stay Satisfying and Minimally Processed",
+  "new": "Going Plant-Based at 60? These 5 Meals Stay Satisfying and Minimally Processed"
+ },
+ {
+  "id": 131,
+  "file": "protein.ts",
+  "old": "Hold Muscle for Years: Adding Protein to Breakfast at 50",
+  "new": "Hold Muscle for Years: 5 Breakfast Proteins to Start With at 50"
+ },
+ {
+  "id": 132,
+  "file": "protein.ts",
+  "old": "Spreading Protein Across the Day Beats One Big Dinner at 55",
+  "new": "Spreading Protein Across the Day Beats One Big Dinner at 55"
+ },
+ {
+  "id": 133,
+  "file": "protein.ts",
+  "old": "Mixing Plant and Animal Protein at 50 Is Smarter Than Picking a Side",
+  "new": "Mixing Plant and Animal Protein at 50 Is Smarter Than Picking a Side"
+ },
+ {
+  "id": 134,
+  "file": "protein.ts",
+  "old": "Strength and Independence at 60: How Much Protein to Aim For",
+  "new": "Strength and Independence at 60: How Much Protein Your Body Needs Now"
+ },
+ {
+  "id": 135,
+  "file": "protein.ts",
+  "old": "High-Protein Snacks at 50: You Don't Need Bars or Shakes to Get Enough",
+  "new": "High-Protein Snacks at 50: You Don't Need Bars or Shakes to Get Enough"
+ },
+ {
+  "id": 136,
+  "file": "antioxidants.ts",
+  "old": "Rotating Berries and Colourful Fruit: A Simple Antioxidant Habit at 50",
+  "new": "Rotating Berries and Colourful Fruit: The Everyday Antioxidant Habit at 50"
+ },
+ {
+  "id": 137,
+  "file": "antioxidants.ts",
+  "old": "Daily Green Tea at 55: A Simple Antioxidant Habit Worth Building",
+  "new": "Green Tea Every Day at 55: An Antioxidant Habit With One Rule — Skip the Biscuit"
+ },
+ {
+  "id": 138,
+  "file": "antioxidants.ts",
+  "old": "Want More Antioxidants at 50? Eat a Rainbow of Colourful Vegetables",
+  "new": "Want More Antioxidants at 50? Eat a Rainbow of Colourful Vegetables"
+ },
+ {
+  "id": 139,
+  "file": "antioxidants.ts",
+  "old": "Dark Leafy Greens at 60: The Antioxidant Powerhouse Worth Adding Daily",
+  "new": "Dark Leafy Greens at 60: The Antioxidant Powerhouse Your Plate May Be Missing"
+ },
+ {
+  "id": 140,
+  "file": "antioxidants.ts",
+  "old": "Boiling Vegetables Pours Antioxidants Away at 50: Steam or Roast Instead",
+  "new": "Boiling Vegetables Pours Antioxidants Away at 50: Steam or Roast Instead"
+ },
+ {
+  "id": 141,
+  "file": "detox.ts",
+  "old": "Fibre Is Your Body's Own Detox System at 50 — Eat More of It",
+  "new": "Fibre Is Your Body's Own Detox System at 50 — Eat More of It"
+ },
+ {
+  "id": 142,
+  "file": "detox.ts",
+  "old": "Water Is the Simplest Detox: How Much Your Kidneys Appreciate at 55",
+  "new": "Water Is the Simplest Detox at 55: How Much Your Kidneys Appreciate"
+ },
+ {
+  "id": 143,
+  "file": "detox.ts",
+  "old": "Cruciferous Vegetables at 50: Supporting Your Body's Own Detox Pathways",
+  "new": "Cruciferous Vegetables at 50: Supporting Your Body's Own Detox Pathways"
+ },
+ {
+  "id": 144,
+  "file": "detox.ts",
+  "old": "The Detox Your Body Actually Needs at 60: Fewer Ultra-Processed Foods",
+  "new": "The Detox Your Body Actually Needs at 60: Fewer Ultra-Processed Foods"
+ },
+ {
+  "id": 145,
+  "file": "detox.ts",
+  "old": "Juice Cleanses Aren't the Detox at 55 — Your Liver and Kidneys Are",
+  "new": "Juice Cleanses Aren't the Detox at 55 — Your Liver and Kidneys Are"
+ },
+ {
+  "id": 146,
+  "file": "cold-therapy.ts",
+  "old": "Keep Meals Light Around Cold Exposure at 50 for Easier Recovery",
+  "new": "Keep Meals Light Around Cold Exposure at 50 for Easier Recovery"
+ },
+ {
+  "id": 147,
+  "file": "cold-therapy.ts",
+  "old": "Drink Water Around Cold Therapy at 55 to Support Recovery",
+  "new": "Cold Therapy at 55: Why Water Before and After Makes Recovery Easier"
+ },
+ {
+  "id": 148,
+  "file": "cold-therapy.ts",
+  "old": "Anti-Inflammatory Meals at 50: Helping Your Body Recover From Cold Exposure",
+  "new": "Anti-Inflammatory Meals at 50: Helping Your Body Recover From Cold Exposure"
+ },
+ {
+  "id": 149,
+  "file": "cold-therapy.ts",
+  "old": "Post-Dip Rewarming at 55: Warming Foods That Make It Easier",
+  "new": "Post-Dip Rewarming at 55: Warming Foods That Make It Easier"
+ },
+ {
+  "id": 150,
+  "file": "cold-therapy.ts",
+  "old": "Oily Fish at 60: Supporting the Same Recovery Goal as Cold Therapy",
+  "new": "Oily Fish at 60: Supporting the Same Recovery Goal as Cold Therapy"
+ },
+ {
+  "id": 151,
+  "file": "sauna-heat.ts",
+  "old": "Hydrate Around the Sauna at 50: Protect the Recovery, Not Ruin It",
+  "new": "Hydrate Around the Sauna at 50: Protect the Recovery, Not Ruin It"
+ },
+ {
+  "id": 152,
+  "file": "sauna-heat.ts",
+  "old": "Bananas, Citrus, and Yogurt at 55: Replenishing What the Sauna Sweats Out",
+  "new": "Bananas, Citrus, and Yogurt at 55: Replenishing What the Sauna Sweats Out"
+ },
+ {
+  "id": 153,
+  "file": "sauna-heat.ts",
+  "old": "A Light Pre-Sauna Meal Beats a Heavy One at 50",
+  "new": "A Light Pre-Sauna Meal Beats a Heavy One at 50"
+ },
+ {
+  "id": 154,
+  "file": "sauna-heat.ts",
+  "old": "Post-Sauna Protein at 55: A Simple Way to Support Recovery",
+  "new": "Post-Sauna Protein at 55: How to Refuel After the Sweat"
+ },
+ {
+  "id": 155,
+  "file": "sauna-heat.ts",
+  "old": "Sodium After a Sauna at 60: When It's Worth Thinking About",
+  "new": "Sodium After a Sauna at 60: The Surprising Answer Is Usually 'Don't Add More'"
+ },
+ {
+  "id": 156,
+  "file": "blue-zones.ts",
+  "old": "Beans Most Days at 50: The Blue Zones Staple Worth Borrowing",
+  "new": "Beans Most Days at 50: The Blue Zones Staple Your Plate May Be Missing"
+ },
+ {
+  "id": 157,
+  "file": "blue-zones.ts",
+  "old": "Whole Grains at Every Meal at 55: A Blue Zones Pattern Worth Trying",
+  "new": "Whole Grains at Every Meal at 55: A Blue Zones Pattern Most People Skip"
+ },
+ {
+  "id": 158,
+  "file": "blue-zones.ts",
+  "old": "A Daily Handful of Nuts at 50: A Blue Zones Habit Worth Borrowing",
+  "new": "A Daily Handful of Nuts at 50: The Blue Zones Habit You Can Start Today"
+ },
+ {
+  "id": 159,
+  "file": "blue-zones.ts",
+  "old": "Meatless Meals That Feel Filling at 50: 5 Ways, Blue Zones Style",
+  "new": "Meatless Meals That Feel Filling at 50: 5 Ways, Blue Zones Style"
+ },
+ {
+  "id": 160,
+  "file": "blue-zones.ts",
+  "old": "Wine and Coffee at 55: Blue Zones Rituals Worth Keeping, Not Magic",
+  "new": "Wine and Coffee at 55: Blue Zones Rituals Worth Keeping, Not Magic"
+ },
+ {
+  "id": 161,
+  "file": "circadian-health.ts",
+  "old": "A Regular Breakfast Time at 50: A Circadian Habit Worth Setting",
+  "new": "Breakfast at the Same Time at 50: A Small Habit With a Big Circadian Payoff"
+ },
+ {
+  "id": 162,
+  "file": "circadian-health.ts",
+  "old": "Set a Caffeine Cutoff at 55 — and These 5 Afternoon Drinks Instead",
+  "new": "Set a Caffeine Cutoff at 55 — and These 5 Afternoon Drinks Instead"
+ },
+ {
+  "id": 163,
+  "file": "circadian-health.ts",
+  "old": "Late-Night Snacking Steals Sleep at 50: What to Eat Earlier Instead",
+  "new": "Late-Night Snacking Steals Sleep at 50: What to Eat Earlier Instead"
+ },
+ {
+  "id": 164,
+  "file": "circadian-health.ts",
+  "old": "A Consistent Eating Window at 50: A Circadian Habit Worth Keeping",
+  "new": "Irregular Eating Windows at 50? Consistency May Be the Circadian Fix"
+ },
+ {
+  "id": 165,
+  "file": "circadian-health.ts",
+  "old": "Morning Light Plus a Proper Breakfast at 50: A Circadian Combo Worth Trying",
+  "new": "Morning Light Plus a Real Breakfast at 50: A Circadian Combo That Sets the Day"
+ },
+ {
+  "id": 166,
+  "file": "meditation.ts",
+  "old": "Mindful Eating at 50: How Eating Without Screens Changes Your Meals",
+  "new": "Mindful Eating at 50: Why the First Look and First Bite Deserve Your Attention"
+ },
+ {
+  "id": 167,
+  "file": "meditation.ts",
+  "old": "Stress-Eating or True Hunger? A Simple Check for People at 50",
+  "new": "Stress-Eating or True Hunger at 50? A Two-Minute Check Tells the Difference"
+ },
+ {
+  "id": 168,
+  "file": "meditation.ts",
+  "old": "One Pause Before Every Meal at 50: This Slows Eating and Improves It",
+  "new": "One Pause Before Every Meal at 50: This Slows Eating and Improves It"
+ },
+ {
+  "id": 169,
+  "file": "meditation.ts",
+  "old": "Calm vs Caffeine at 50: Which Drinks Support a Steady Mind",
+  "new": "Calm vs Caffeine at 50: Which Drinks Support a Steady Mind"
+ },
+ {
+  "id": 170,
+  "file": "meditation.ts",
+  "old": "An Evening Wind-Down Ritual at 55: These Foods Prepare You for Bed",
+  "new": "An Evening Wind-Down Ritual at 55: What to Eat (and Skip) Before Bed"
+ }
+]

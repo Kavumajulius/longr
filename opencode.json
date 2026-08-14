@@ -1,0 +1,18 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "whop-docs": {
+      "type": "remote",
+      "url": "https://docs.whop.com/mcp",
+      "enabled": true
+    },
+    "whop-api": {
+      "type": "local",
+      "command": ["npx", "-y", "@whop/mcp", "--tools=dynamic"],
+      "environment": {
+        "WHOP_API_KEY": "{env:WHOP_API_KEY}"
+      },
+      "enabled": true
+    }
+  }
+}
