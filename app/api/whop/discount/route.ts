@@ -28,7 +28,17 @@ export async function POST(request: NextRequest) {
 
   const token = issueDiscountToken(discount);
   if (!token) {
-    return NextResponse.json({ error: "Discount signing is not configured" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Discount signing is not configured" },
+      { status: 500 }
+    );
   }
   return NextResponse.json({ discount, token });
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { error: "Method not allowed" },
+    { status: 405 }
+  );
 }

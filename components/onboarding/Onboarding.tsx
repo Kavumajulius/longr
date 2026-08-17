@@ -388,7 +388,7 @@ export default function Onboarding() {
             <h1 className="step-title">Where should we send your Longr plan?</h1>
             <p className="step-sub">Save your Healthy Years Profile and continue the reading path selected for your goals.</p>
             <label className="field-label" htmlFor="plan-email">Email address</label>
-            <input id="plan-email" className="input-text" type="email" value={answers.email} onChange={(event) => setAnswers({ ...answers, email: event.target.value })} autoComplete="email" placeholder="you@email.com" />
+            <input id="plan-email" className="input-text" type="email" value={answers.email} onChange={(event) => setAnswers({ ...answers, email: event.target.value })} autoComplete="email" inputMode="email" placeholder="you@email.com" />
             <button className="cta-btn" type="button" disabled={!answers.email.includes("@") || answers.email.length < 5} onClick={() => {
               trackOnboardingEvent("email_submitted");
               goTo("name");

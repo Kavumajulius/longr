@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { WhopCheckoutEmbed } from "@whop/checkout/react";
 import { Activity, BookOpen, Brain, Check, ChefHat, Clock3, Dumbbell, Flame, Gift, HeartPulse, Leaf, LockKeyhole, Salad, ShieldCheck, ShoppingBasket, Soup, Sparkles, Target, Wheat, X } from "lucide-react";
 import { auth } from "@/lib/firebase";
@@ -10,7 +10,7 @@ import { ageFocus, answerLabel, blockerPromise, type OnboardingAnswers } from "@
 export type PlanTier = "weekly" | "monthly" | "annual";
 interface PlanDef { tier: PlanTier; name: string; amount: number; period: string; note: string; renewal: string; recommended?: boolean; }
 const PLANS: PlanDef[] = [
-  { tier: "weekly", name: "1 week", amount: 9.99, period: "/week", note: "A short start", renewal: "$9.99 weekly" },
+  { tier: "weekly", name: "1 week", amount: 11.99, period: "/week", note: "A short start", renewal: "$11.99 weekly" },
   { tier: "monthly", name: "4 weeks", amount: 24.99, period: "/4 weeks", note: "Flexible access", renewal: "$24.99 every 4 weeks" },
   { tier: "annual", name: "Annual", amount: 79.99, period: "/year", note: "Equivalent to $6.67/month", renewal: "$79.99 annually", recommended: true },
 ];
@@ -63,11 +63,20 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
   const [paid, setPaid] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [abandonmentOpen, setAbandonmentOpen] = useState(false);
+  const [preloadSession, setPreloadSession] = useState<CheckoutSession | null>(null);
   const [activeDiscount, setActiveDiscount] = useState(discount);
   const [activeDiscountToken, setActiveDiscountToken] = useState(discountToken);
   const [expiresAt, setExpiresAt] = useState(() => Date.now() + 10 * 60 * 1000);
   const [secondsLeft, setSecondsLeft] = useState(600);
   const checkoutCardRef = useRef<HTMLDivElement>(null);
+
+  // ── Prefetch state: silently fetch the checkout session in the background ──
+  const prefetchedSession = useRef<CheckoutSession | null>(null);
+  const prefetchedAt = useRef<number>(0);
+  const prefetchedTier = useRef<PlanTier | null>(null);
+  const prefetchedDiscount = useRef<number>(-1);
+  const cachedIdToken = useRef<{ token: string; expiresAt: number } | null>(null);
+  const prefilledEmail = useRef(userEmail ?? "");
 
   useEffect(() => { onEvent?.("paywall_viewed", { discount }); }, [onEvent, discount]);
   useEffect(() => {
@@ -92,15 +101,107 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
     return () => window.clearTimeout(timer);
   }, [checkoutOpen, session]);
 
+  // ── Pre-warm Firebase ID token so it is ready before the user clicks ──
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (!currentUser) return;
+    let cancelled = false;
+    currentUser.getIdToken(false).then((token) => {
+      if (cancelled) return;
+      // Cache for 50 minutes (Firebase tokens last 60 min)
+      cachedIdToken.current = { token, expiresAt: Date.now() + 50 * 60 * 1000 };
+    }).catch(() => { /* non-fatal — fall back to fresh token on click */ });
+    return () => { cancelled = true; };
+  }, []);
+
+  // ── Silently prefetch the checkout session in the background ──
+  const silentPrefetch = useCallback(async (tier: PlanTier, currentDiscount: number, currentDiscountToken: string | null) => {
+    const currentUser = auth.currentUser;
+    try {
+      let idToken: string | undefined;
+      if (currentUser) {
+        // Use cached token if still valid, otherwise refresh
+        if (cachedIdToken.current && cachedIdToken.current.expiresAt > Date.now()) {
+          idToken = cachedIdToken.current.token;
+        } else {
+          idToken = await currentUser.getIdToken(false);
+          cachedIdToken.current = { token: idToken, expiresAt: Date.now() + 50 * 60 * 1000 };
+        }
+      }
+      const authenticated = currentUser && idToken
+        ? { uid: currentUser.uid, idToken }
+        : {};
+      const response = await fetch("/api/whop/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...authenticated,
+          email: userEmail,
+          tier,
+          discount: currentDiscount,
+          discountToken: currentDiscountToken,
+        }),
+      });
+      if (!response.ok) return; // silent failure — on-demand fetch will handle the error
+      const data = await response.json() as CheckoutSession;
+      prefetchedSession.current = data;
+      prefetchedAt.current = Date.now();
+      prefetchedTier.current = tier;
+      prefetchedDiscount.current = currentDiscount;
+      // Trigger hidden pre-render of the embed so the iframe loads before user clicks
+      setPreloadSession(data);
+      // Remember the email for prefill after session is created
+      prefilledEmail.current = userEmail ?? "";
+    } catch {
+      // non-fatal: on-demand fetch in startCheckout is the fallback
+    }
+  }, [userEmail]);
+
+  // Trigger prefetch on mount and whenever plan or discount changes
+  useEffect(() => {
+    // Short delay so prefetch doesn't compete with initial paint
+    const timer = window.setTimeout(() => {
+      void silentPrefetch(selected, activeDiscount, activeDiscountToken);
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [selected, activeDiscount, activeDiscountToken, silentPrefetch]);
+
   async function startCheckout() {
     if (loading) return;
     setSession(null); setError(""); setPaid(false);
     setCheckoutOpen(true);
+    onEvent?.("checkout_started", { tier: selected, discount: activeDiscount });
+
+    // ── Use the prefetched session if it is fresh (<5 min) and matches current plan/discount ──
+    const SESSION_MAX_AGE_MS = 5 * 60 * 1000;
+    const isCached =
+      prefetchedSession.current !== null &&
+      prefetchedTier.current === selected &&
+      prefetchedDiscount.current === activeDiscount &&
+      Date.now() - prefetchedAt.current < SESSION_MAX_AGE_MS;
+
+    if (isCached && prefetchedSession.current) {
+      setSession(prefetchedSession.current);
+      setPreloadSession(null);
+      prefetchedSession.current = null;
+      prefetchedAt.current = 0;
+    }
+
+    // ── Fallback: on-demand fetch ──
     const currentUser = auth.currentUser;
-    setLoading(true); onEvent?.("checkout_started", { tier: selected, discount: activeDiscount });
+    setLoading(true);
     try {
-      const authenticated = currentUser
-        ? { uid: currentUser.uid, idToken: await currentUser.getIdToken() }
+      let idToken: string | undefined;
+      if (currentUser) {
+        if (cachedIdToken.current && cachedIdToken.current.expiresAt > Date.now()) {
+          idToken = cachedIdToken.current.token;
+        } else {
+          idToken = await currentUser.getIdToken();
+          cachedIdToken.current = { token: idToken, expiresAt: Date.now() + 50 * 60 * 1000 };
+        }
+      }
+      const authenticated = currentUser && idToken
+        ? { uid: currentUser.uid, idToken }
         : {};
       const response = await fetch("/api/whop/checkout", {
         method: "POST",
@@ -119,7 +220,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
     } catch (checkoutError) { setError(checkoutError instanceof Error ? checkoutError.message : "Something went wrong starting checkout."); }
     finally { setLoading(false); }
   }
-  function handleComplete(planId: string, receiptId?: string) {
+  function handleComplete(planId: string, receiptId?: string, result?: any) {
     if (!session || !receiptId) {
       setError("Payment completed, but the receipt is still being confirmed. Please use the secure checkout link or contact support.");
       return;
@@ -144,8 +245,12 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "boost", token: activeDiscountToken }),
       });
+      if (!response.ok) {
+        const text = await response.text();
+        return setError(text || "The additional offer could not be applied.");
+      }
       const result = await response.json() as { discount?: number; token?: string; error?: string };
-      if (!response.ok || typeof result.discount !== "number" || !result.token) {
+      if (typeof result.discount !== "number" || !result.token) {
         throw new Error(result.error || "The additional offer could not be applied.");
       }
       setActiveDiscount(result.discount);
@@ -177,7 +282,18 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
     renewalAmount: selectedPlan.amount,
     billingPeriodDays: selected === "weekly" ? 7 : selected === "monthly" ? 28 : 365,
   };
-  const checkoutModal = checkoutOpen && <div className="checkout-modal-overlay" role="dialog" aria-modal="true" aria-label="Secure Longr checkout">
+  // The active session is either the confirmed one (post-click) or the preloaded one (pre-click)
+  const activeSession = session ?? preloadSession;
+  // Render the modal whenever it is open OR a preload session is ready (so the iframe warms up hidden)
+  const shouldRenderModal = checkoutOpen || !!preloadSession;
+  const checkoutModal = shouldRenderModal && <div
+    className="checkout-modal-overlay"
+    role="dialog"
+    aria-modal={checkoutOpen}
+    aria-hidden={!checkoutOpen}
+    aria-label="Secure Longr checkout"
+    style={!checkoutOpen ? { position: "fixed", inset: 0, opacity: 0, pointerEvents: "none", zIndex: -1 } : undefined}
+  >
     <div className="checkout-modal-card checkout-payment-card" ref={checkoutCardRef} tabIndex={-1}>
       <button className="checkout-modal-close" type="button" aria-label="Close checkout" onClick={closeCheckout}><X /></button>
       <div className={`checkout-reservation${checkoutPricing.discount === 0 ? " no-discount" : ""}`}>
@@ -203,18 +319,22 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
         <small>Then ${checkoutPricing.renewalAmount.toFixed(2)} every {checkoutPricing.billingPeriodDays} days until cancelled.</small>
       </section>
       <p className="checkout-security"><ShieldCheck size={17} /> Card details are entered securely in Whop checkout</p>
-      <div className="checkout-embed-shell">
-        {session ? <WhopCheckoutEmbed
-          sessionId={session.sessionId}
-          theme="light"
-          themeOptions={{ accentColor: variant === "step" ? "#4f46e5" : "#139447", buttonText: "Confirm secure payment" }}
-          returnUrl={`${publicAppUrl()}/hub`}
-          prefill={{ email: userEmail ?? undefined }}
-          promoCode={session.promoCode ?? undefined}
-          onComplete={handleComplete}
-          onPaymentError={(paymentError) => setError(paymentError.message || "Payment could not be completed.")}
-          fallback={<div className="paywall-checkout-loading">Loading secure card form…</div>}
-        /> : loading ? <div className="paywall-checkout-loading">Preparing secure card form…</div> : null}
+<div className="checkout-embed-shell">
+        {activeSession ? (
+          <WhopCheckoutEmbed
+            sessionId={activeSession.sessionId}
+            theme="light"
+            themeOptions={{ accentColor: variant === "step" ? "#4f46e5" : "#139447", buttonText: "Confirm secure payment" }}
+            returnUrl={`${publicAppUrl()}/hub`}
+            promoCode={activeSession.promoCode ?? undefined}
+            hideAddressForm
+            prefill={{ email: prefilledEmail.current }}
+            onComplete={handleComplete}
+            onPaymentError={(paymentError) => setError(paymentError.message || "Payment could not be completed.")}
+          />
+        ) : loading ? (
+          <div className="paywall-checkout-loading">Preparing secure card form…</div>
+        ) : null}
       </div>
       {error && <div className="checkout-modal-error" role="alert">{error}</div>}
       {!session && !loading && <button className="checkout-retry" type="button" onClick={() => void startCheckout()}>Try secure checkout again</button>}

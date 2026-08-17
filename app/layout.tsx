@@ -43,6 +43,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        {/* Preconnect to Whop checkout so the payment iframe loads faster */}
+        <link rel="preconnect" href="https://whop.com" />
+        <link rel="dns-prefetch" href="https://whop.com" />
+        <link rel="preconnect" href="https://checkout.whop.com" />
+        <link rel="dns-prefetch" href="https://checkout.whop.com" />
       </head>
       <body>{children}</body>
     </html>

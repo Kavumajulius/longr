@@ -23,8 +23,12 @@ export default function DiscountWheel({ userName, onClaim, onEvent }: { userName
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "spin" }),
       });
+      if (!response.ok) {
+        const text = await response.text();
+        return setError(text || "Your offer could not be prepared.");
+      }
       const result = await response.json() as { discount?: number; token?: string; error?: string };
-      if (!response.ok || typeof result.discount !== "number" || !result.token) {
+      if (typeof result.discount !== "number" || !result.token) {
         throw new Error(result.error || "Your offer could not be prepared.");
       }
       const index = DISCOUNTS.indexOf(result.discount);
