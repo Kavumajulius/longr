@@ -6,34 +6,68 @@ export const dynamic = "force-dynamic";
 const WHEEL_DISCOUNTS = [10, 15, 20, 25, 30, 35] as const;
 
 export async function POST(request: NextRequest) {
-  let body: { action?: unknown; token?: unknown };
   try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
+    // ─── Read raw text first (defensive: catches HTML error pages) ───
+    const text = await request.text();
 
-  let discount: number;
-  if (body.action === "spin") {
-    discount = WHEEL_DISCOUNTS[Math.floor(Math.random() * WHEEL_DISCOUNTS.length)];
-  } else if (body.action === "boost") {
-    const current = verifyDiscountToken(body.token);
-    if (!current) {
-      return NextResponse.json({ error: "The discount offer has expired" }, { status: 409 });
+    // Try to parse as JSON, but catch HTML error pages
+    let data: unknown;
+    try {
+      data = JSON.parse(text);
+    } catch (parseError) {
+      console.error(
+        "[whop/discount] Invalid response – received HTML instead of JSON:",
+        text.substring(0, 200),
+      );
+      return NextResponse.json(
+        { error: "Whop discount API returned an error page" },
+        { status: 502 },
+      );
     }
-    discount = Math.min(45, current.discount + 10);
-  } else {
-    return NextResponse.json({ error: "Unknown discount action" }, { status: 400 });
-  }
 
-  const token = issueDiscountToken(discount);
-  if (!token) {
-    return NextResponse.json(
-      { error: "Discount signing is not configured" },
-      { status: 500 }
-    );
+    const body = data as { action?: unknown; token?: unknown };
+
+    if (body.action === "spin") {
+      const discount = WHEEL_DISCOUNTS[Math.floor(Math.random() * WHEEL_DISCOUNTS.length)];
+      const token = issueDiscountToken(discount);
+      if (!token) {
+        return NextResponse.json(
+          { error: "Discount signing is not configured" },
+          { status: 500 },
+        );
+      }
+      return NextResponse.json({ discount, token });
+    } else if (body.action === "boost") {
+      if (!body.token) {
+        return NextResponse.json({ error: "Token required" }, { status: 400 });
+      }
+      // Try to parse the token if it's a string
+      let tokenData: unknown;
+      try {
+        tokenData = JSON.parse(body.token as string);
+      } catch {
+        return NextResponse.json({ error: "Invalid token format" }, { status: 400 });
+      }
+      const current = verifyDiscountToken(body.token as string);
+      if (!current) {
+        return NextResponse.json({ error: "The discount offer has expired" }, { status: 409 });
+      }
+      const discount = Math.min(45, current.discount + 10);
+      const newToken = issueDiscountToken(discount);
+      if (!newToken) {
+        return NextResponse.json(
+          { error: "Discount signing is not configured" },
+          { status: 500 },
+        );
+      }
+      return NextResponse.json({ discount, token: newToken });
+    } else {
+      return NextResponse.json({ error: "Unknown discount action" }, { status: 400 });
+    }
+  } catch (error: any) {
+    console.error("[whop/discount] handler error:", error.message);
+    return NextResponse.json({ error: "Handler error: " + error.message }, { status: 500 });
   }
-  return NextResponse.json({ discount, token });
 }
 
 export async function GET() {

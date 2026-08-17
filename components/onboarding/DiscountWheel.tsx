@@ -23,24 +23,29 @@ export default function DiscountWheel({ userName, onClaim, onEvent }: { userName
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "spin" }),
       });
-      if (!response.ok) {
-        const text = await response.text();
-        return setError(text || "Your offer could not be prepared.");
-      }
-      const result = await response.json() as { discount?: number; token?: string; error?: string };
-      if (typeof result.discount !== "number" || !result.token) {
-        throw new Error(result.error || "Your offer could not be prepared.");
-      }
-      const index = DISCOUNTS.indexOf(result.discount);
-      if (index < 0) throw new Error("The offer result was invalid.");
-      const segment = 360 / DISCOUNTS.length;
-      setRotation(1440 + (360 - (index * segment + segment / 2)));
-      setOfferToken(result.token);
-      window.setTimeout(() => {
-        setWon(result.discount!);
+      const text = await response.text(); // defensive: read as raw text first
+      try {
+        if (!response.ok) {
+          return setError(text || "Your offer could not be prepared.");
+        }
+        const result = JSON.parse(text) as { discount?: number; token?: string; error?: string };
+        if (typeof result.discount !== "number" || !result.token) {
+          throw new Error(result.error || "Your offer could not be prepared.");
+        }
+        const index = DISCOUNTS.indexOf(result.discount);
+        if (index < 0) throw new Error("The offer result was invalid.");
+        const segment = 360 / DISCOUNTS.length;
+        setRotation(1440 + (360 - (index * segment + segment / 2)));
+        setOfferToken(result.token);
+        window.setTimeout(() => {
+          setWon(result.discount!);
+          setSpinning(false);
+          onEvent?.("discount_awarded", { discount: result.discount });
+        }, 2600);
+      } catch (offerError) {
         setSpinning(false);
-        onEvent?.("discount_awarded", { discount: result.discount });
-      }, 2600);
+        setError(offerError instanceof Error ? offerError.message : "Your offer could not be prepared.");
+      }
     } catch (offerError) {
       setSpinning(false);
       setError(offerError instanceof Error ? offerError.message : "Your offer could not be prepared.");

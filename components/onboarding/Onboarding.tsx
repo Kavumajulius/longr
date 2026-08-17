@@ -209,14 +209,20 @@ export default function Onboarding() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ idToken, receiptId: purchase.receiptId }),
     });
-    const result = await response.json() as { error?: string };
-    if (!response.ok) {
-      throw new Error(result.error || "Unable to link the completed payment.");
-    }
+    const text = await response.text(); // defensive: read as raw text first
     try {
-      localStorage.removeItem("longrPendingWhopPurchase");
-    } catch {
-      // Best effort cleanup.
+      const result = JSON.parse(text) as { error?: string };
+      if (!response.ok) {
+        throw new Error(result.error || "Unable to link the completed payment.");
+      }
+      try {
+        localStorage.removeItem("longrPendingWhopPurchase");
+      } catch {
+        // Best effort cleanup.
+      }
+    } catch (err) {
+      console.error("Failed to parse JSON. Received HTML instead:", text);
+      throw new Error("Unable to link the completed payment.");
     }
   }
 
