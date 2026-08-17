@@ -27,140 +27,124 @@ const INTRODUCTORY_PROMO_CODES: Record<number, string | undefined> = {
 };
 
 export async function POST(request: NextRequest) {
-  let body: {
-    uid?: unknown;
-    tier?: unknown;
-    idToken?: unknown;
-    discount?: unknown;
-    discountToken?: unknown;
-    email?: unknown;
-  };
   try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
-  }
+    console.log("=== DEBUG: POST /api/whop/checkout ===");
+    console.log("Body received");
 
-  const { uid, tier, idToken, discount, discountToken, email } = body;
+    const body = await request.json();
+    console.log("Body parsed:", JSON.stringify(body).substring(0, 200));
 
-  if (!isWhopTier(tier)) {
-    return NextResponse.json(
-      { error: "tier must be one of: weekly, monthly, annual" },
-      { status: 400 },
-    );
-  }
+    const { uid, tier, idToken, discount, discountToken, email } = body;
 
-  const checkoutEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
-  const hasAuthPayload = typeof uid === "string" || typeof idToken === "string";
-  let authenticatedUid: string | null = null;
+    console.log("Checks: isWhopTier(tier) =", isWhopTier(tier));
+    console.log("uid type:", typeof uid, "uid length:", uid?.length);
+    console.log("idToken type:", typeof idToken, "idToken length:", idToken?.length);
 
-  if (hasAuthPayload) {
-    if (
-      typeof uid !== "string" ||
-      uid.length === 0 ||
-      typeof idToken !== "string" ||
-      idToken.length === 0
-    ) {
-      return NextResponse.json({ error: "Invalid authentication details" }, { status: 400 });
-    }
-
-    const adminAuth = getAdminAuth();
-    if (!adminAuth) {
+    if (!isWhopTier(tier)) {
       return NextResponse.json(
-        { error: "Firebase admin is not configured" },
-        { status: 500 },
+        { error: "tier must be one of: weekly, monthly, annual" },
+        { status: 400 },
       );
     }
 
-    try {
-      const decoded = await adminAuth.verifyIdToken(idToken);
-      if (decoded.uid !== uid) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    // Auth check
+    if (typeof uid === "string" && typeof idToken === "string") {
+      console.log("Auth check: uid.length =", uid.length, "idToken.length =", idToken.length);
+      if (uid.length === 0 || idToken.length === 0) {
+        return NextResponse.json({ error: "Invalid authentication details" }, { status: 400 });
       }
-      authenticatedUid = decoded.uid;
-    } catch {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+
+      const adminAuth = getAdminAuth();
+      console.log("getAdminAuth() result:", adminAuth ? "AUTH OK" : "AUTH NULL");
+
+      if (!adminAuth) {
+        return NextResponse.json({ error: "Firebase admin not configured" }, { status: 500 });
+      }
+
+      try {
+        console.log("Calling verifyIdToken...");
+        const decoded = await adminAuth.verifyIdToken(idToken);
+        console.log("Token decoded: uid =", decoded.uid);
+        if (decoded.uid !== uid) {
+          return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+        }
+      } catch (error: any) {
+        console.error("Token verification error:", error.message);
+        return NextResponse.json({ error: "Token error: " + error.message }, { status: 403 });
+      }
+    } else if (!/^\S+@\S+\.\S+$/.test(email as string)) {
+      return NextResponse.json({ error: "Valid email required" }, { status: 400 });
     }
-  } else if (!/^\S+@\S+\.\S+$/.test(checkoutEmail)) {
-    return NextResponse.json(
-      { error: "A valid email is required to start checkout" },
-      { status: 400 },
-    );
-  }
 
-  if (!WHOP_COMPANY_ID || !WHOP_PRODUCT_ID) {
-    return NextResponse.json(
-      { error: "Whop is not configured" },
-      { status: 500 },
-    );
-  }
+    const checkoutEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
-  const planId = WHOP_TIER_PLANS[tier];
-  const requestedDiscount = typeof discount === "number" && Number.isFinite(discount)
-    ? Math.round(discount)
-    : 0;
-  const verifiedOffer = verifyDiscountToken(discountToken);
-  const safeDiscount = verifiedOffer?.discount ?? 0;
-  if (requestedDiscount !== safeDiscount) {
-    return NextResponse.json(
-      { error: safeDiscount === 0 ? "The introductory discount has expired" : "Invalid introductory discount" },
-      { status: 409 },
-    );
-  }
-  const promoCode = safeDiscount > 0
-    ? INTRODUCTORY_PROMO_CODES[safeDiscount]?.trim()
-    : undefined;
-  if (safeDiscount > 0 && !promoCode) {
-    console.error(`[whop/checkout] missing one-time promo for ${safeDiscount}% offer`);
-    return NextResponse.json(
-      { error: "This welcome discount is temporarily unavailable. Please try again shortly." },
-      { status: 503 },
-    );
-  }
-  const detail = WHOP_TIER_DETAILS[tier];
-  const metadata = {
-    source: "longr_onboarding",
-    tier,
-    introductory_discount: safeDiscount,
-    ...(authenticatedUid ? { uid: authenticatedUid } : {}),
-    ...(checkoutEmail ? { onboarding_email: checkoutEmail } : {}),
-  };
+    if (!WHOP_COMPANY_ID || !WHOP_PRODUCT_ID) {
+      return NextResponse.json({ error: "Whop not configured" }, { status: 500 });
+    }
 
-  try {
-    const config = await whopsdk.checkoutConfigurations.create({
-      account_id: WHOP_COMPANY_ID,
-      plan_id: planId,
-      metadata,
-      redirect_url: `${publicAppUrl(request.nextUrl.origin)}/hub`,
-    });
+    const planId = WHOP_TIER_PLANS[tier];
+    const requestedDiscount = typeof discount === "number" && Number.isFinite(discount)
+      ? Math.round(discount)
+      : 0;
+    const verifiedOffer = verifyDiscountToken(discountToken);
+    const safeDiscount = verifiedOffer?.discount ?? 0;
+    if (requestedDiscount !== safeDiscount) {
+      return NextResponse.json(
+        { error: safeDiscount === 0 ? "Discount expired" : "Invalid discount" },
+        { status: 409 },
+      );
+    }
+    const promoCode = safeDiscount > 0
+      ? INTRODUCTORY_PROMO_CODES[safeDiscount]?.trim()
+      : undefined;
+    if (safeDiscount > 0 && !promoCode) {
+      return NextResponse.json(
+        { error: "Discount temporarily unavailable" },
+        { status: 503 },
+      );
+    }
+    const detail = WHOP_TIER_DETAILS[tier];
+    const metadata = {
+      source: "longr_onboarding",
+      tier,
+      introductory_discount: safeDiscount,
+      ...(checkoutEmail ? { onboarding_email: checkoutEmail } : {}),
+    };
 
-    const introductoryTotal = Number(
-      (detail.amount * (1 - safeDiscount / 100)).toFixed(2),
-    );
+    try {
+      console.log("Creating checkout config...");
+      const config = await whopsdk.checkoutConfigurations.create({
+        account_id: WHOP_COMPANY_ID,
+        plan_id: planId,
+        metadata,
+        redirect_url: `${publicAppUrl(request.nextUrl.origin)}/hub`,
+      });
 
-    return NextResponse.json({
-      sessionId: config.id,
-      planId: config.plan?.id ?? planId,
-      purchaseUrl: safeDiscount === 0 ? config.purchase_url ?? null : null,
-      promoCode: promoCode ?? null,
-      pricing: {
-        currency: "usd",
-        regularAmount: detail.amount,
-        discount: safeDiscount,
-        discountAmount: Number((detail.amount - introductoryTotal).toFixed(2)),
-        total: introductoryTotal,
-        renewalAmount: detail.amount,
-        billingPeriodDays: detail.days,
-      },
-    });
-  } catch (error) {
-    console.error(
-      "[whop/checkout] failed to create checkout configuration",
-      error,
-    );
-    return NextResponse.json(
-      { error: "Failed to start checkout" },
-      { status: 500 },
-    );
+      const introductoryTotal = Number(
+        (detail.amount * (1 - safeDiscount / 100)).toFixed(2),
+      );
+
+      return NextResponse.json({
+        sessionId: config.id,
+        planId: config.plan?.id ?? planId,
+        purchaseUrl: safeDiscount === 0 ? config.purchase_url ?? null : null,
+        promoCode: promoCode ?? null,
+        pricing: {
+          currency: "usd",
+          regularAmount: detail.amount,
+          discount: safeDiscount,
+          discountAmount: Number((detail.amount - introductoryTotal).toFixed(2)),
+          total: introductoryTotal,
+          renewalAmount: detail.amount,
+          billingPeriodDays: detail.days,
+        },
+      });
+    } catch (error: any) {
+      console.error("[whop/checkout] config error:", error.message, error.stack);
+      return NextResponse.json({ error: "Checkout failed: " + error.message }, { status: 500 });
+    }
+  } catch (error: any) {
+    console.error("[whop/checkout] handler error:", error.message, error.stack);
+    return NextResponse.json({ error: "Handler error: " + error.message }, { status: 500 });
   }
 }

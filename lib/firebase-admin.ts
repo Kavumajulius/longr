@@ -39,10 +39,11 @@ function loadServiceAccount(): ServiceAccount | null {
 }
 
 function toServiceAccount(raw: Record<string, unknown>): ServiceAccount {
+  const privateKey = String(raw.private_key ?? "").replace(/\\n/g, "\n");
   return {
     projectId: String(raw.project_id ?? ""),
     clientEmail: String(raw.client_email ?? ""),
-    privateKey: String(raw.private_key ?? ""),
+    privateKey,
   };
 }
 
