@@ -142,22 +142,19 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
           discountToken: currentDiscountToken,
         }),
       });
-      const text = await response.text(); // defensive: read as raw text first
-      try {
-        if (!response.ok) return; // silent failure — on-demand fetch will handle the error
-        const data = JSON.parse(text) as CheckoutSession;
-        prefetchedSession.current = data;
-        prefetchedAt.current = Date.now();
-        prefetchedTier.current = tier;
-        prefetchedDiscount.current = currentDiscount;
-        // Trigger hidden pre-render of the embed so the iframe loads before user clicks
-        setPreloadSession(data);
-        // Remember the email for prefill after session is created
-        prefilledEmail.current = userEmail ?? "";
-      } catch (err) {
-        console.error("Failed to parse JSON. Received HTML instead:", text);
-        // non-fatal: on-demand fetch in startCheckout is the fallback
-      }
+      if (!response.ok) return; // silent failure — on-demand fetch will handle the error
+      const data = await response.json() as CheckoutSession;
+      prefetchedSession.current = data;
+      prefetchedAt.current = Date.now();
+      prefetchedTier.current = tier;
+      prefetchedDiscount.current = currentDiscount;
+      // Trigger hidden pre-render of the embed so the iframe loads before user clicks
+      setPreloadSession(data);
+      // Remember the email for prefill after session is created
+      prefilledEmail.current = userEmail ?? "";
+    } catch {
+      // non-fatal: on-demand fetch in startCheckout is the fallback
+    }
   }, [userEmail]);
 
   // Trigger prefetch on mount and whenever plan or discount changes
