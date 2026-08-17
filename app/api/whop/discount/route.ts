@@ -41,13 +41,7 @@ export async function POST(request: NextRequest) {
       if (!body.token) {
         return NextResponse.json({ error: "Token required" }, { status: 400 });
       }
-      // Try to parse the token if it's a string
-      let tokenData: unknown;
-      try {
-        tokenData = JSON.parse(body.token as string);
-      } catch {
-        return NextResponse.json({ error: "Invalid token format" }, { status: 400 });
-      }
+      // The token is a signed string, verification handles parsing
       const current = verifyDiscountToken(body.token as string);
       if (!current) {
         return NextResponse.json({ error: "The discount offer has expired" }, { status: 409 });

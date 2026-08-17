@@ -214,7 +214,13 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
           discountToken: activeDiscountToken,
         }),
       });
-      const data = await response.json();
+      const text = await response.text();
+      let data: unknown;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Server error: The checkout service is temporarily unavailable.");
+      }
       if (!response.ok) throw new Error((data as { error?: string } | null)?.error || "Something went wrong starting checkout.");
       setSession(data as CheckoutSession);
     } catch (checkoutError) { setError(checkoutError instanceof Error ? checkoutError.message : "Something went wrong starting checkout."); }
@@ -245,16 +251,22 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "boost", token: activeDiscountToken }),
       });
+      const text = await response.text();
+      let result: unknown;
+      try {
+        result = JSON.parse(text);
+      } catch {
+        throw new Error("Server error: The additional offer could not be applied.");
+      }
       if (!response.ok) {
-        const text = await response.text();
-        return setError(text || "The additional offer could not be applied.");
+        throw new Error((result as { error?: string })?.error || "The additional offer could not be applied.");
       }
-      const result = await response.json() as { discount?: number; token?: string; error?: string };
-      if (typeof result.discount !== "number" || !result.token) {
-        throw new Error(result.error || "The additional offer could not be applied.");
+      const typedResult = result as { discount?: number; token?: string; error?: string };
+      if (typeof typedResult.discount !== "number" || !typedResult.token) {
+        throw new Error(typedResult.error || "The additional offer could not be applied.");
       }
-      setActiveDiscount(result.discount);
-      setActiveDiscountToken(result.token);
+      setActiveDiscount(typedResult.discount);
+      setActiveDiscountToken(typedResult.token);
       setExpiresAt(Date.now() + 10 * 60 * 1000);
       setSecondsLeft(600);
       setAbandonmentOpen(false);
