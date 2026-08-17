@@ -270,7 +270,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
       setExpiresAt(Date.now() + 10 * 60 * 1000);
       setSecondsLeft(600);
       setAbandonmentOpen(false);
-      onEvent?.("abandonment_offer_accepted", { discount: result.discount });
+      onEvent?.("abandonment_offer_accepted", { discount: typedResult.discount });
     } catch (offerError) {
       setError(offerError instanceof Error ? offerError.message : "The additional offer could not be applied.");
     }
