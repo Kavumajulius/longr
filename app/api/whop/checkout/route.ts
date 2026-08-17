@@ -28,19 +28,37 @@ const INTRODUCTORY_PROMO_CODES: Record<number, string | undefined> = {
 
 export async function POST(request: NextRequest) {
   try {
-    console.log("=== DEBUG: POST /api/whop/checkout ===");
-    console.log("Body received");
+    // ─── Read raw text first (defensive: catches HTML error pages) ───
+    const text = await request.text();
 
-    const body = await request.json();
-    console.log("Body parsed:", JSON.stringify(body).substring(0, 200));
+    // Try to parse as JSON, but catch HTML error pages
+    let data: unknown;
+    try {
+      data = JSON.parse(text);
+    } catch (parseError) {
+      console.error(
+        "[whop/checkout] Invalid response – received HTML instead of JSON:",
+        text.substring(0, 200),
+      );
+      return NextResponse.json(
+        {
+          error:
+            "Whop API returned an error page instead of JSON. Check server logs.",
+        },
+        { status: 502 },
+      );
+    }
 
-    const { uid, tier, idToken, discount, discountToken, email } = body;
+    const body = data as {
+      uid?: unknown;
+      tier?: unknown;
+      idToken?: unknown;
+      discount?: unknown;
+      discountToken?: unknown;
+      email?: unknown;
+    };
 
-    console.log("Checks: isWhopTier(tier) =", isWhopTier(tier));
-    console.log("uid type:", typeof uid, "uid length:", uid?.length);
-    console.log("idToken type:", typeof idToken, "idToken length:", idToken?.length);
-
-    if (!isWhopTier(tier)) {
+    if (!isWhopTier(body.tier)) {
       return NextResponse.json(
         { error: "tier must be one of: weekly, monthly, annual" },
         { status: 400 },
@@ -48,45 +66,43 @@ export async function POST(request: NextRequest) {
     }
 
     // Auth check
-    if (typeof uid === "string" && typeof idToken === "string") {
-      console.log("Auth check: uid.length =", uid.length, "idToken.length =", idToken.length);
-      if (uid.length === 0 || idToken.length === 0) {
+    if (typeof body.uid === "string" && typeof body.idToken === "string") {
+      if (body.uid.length === 0 || body.idToken.length === 0) {
         return NextResponse.json({ error: "Invalid authentication details" }, { status: 400 });
       }
 
       const adminAuth = getAdminAuth();
-      console.log("getAdminAuth() result:", adminAuth ? "AUTH OK" : "AUTH NULL");
-
       if (!adminAuth) {
         return NextResponse.json({ error: "Firebase admin not configured" }, { status: 500 });
       }
 
       try {
-        console.log("Calling verifyIdToken...");
-        const decoded = await adminAuth.verifyIdToken(idToken);
-        console.log("Token decoded: uid =", decoded.uid);
-        if (decoded.uid !== uid) {
+        const decoded = await adminAuth.verifyIdToken(body.idToken);
+        if (decoded.uid !== body.uid) {
           return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
         }
       } catch (error: any) {
-        console.error("Token verification error:", error.message);
         return NextResponse.json({ error: "Token error: " + error.message }, { status: 403 });
       }
-    } else if (!/^\S+@\S+\.\S+$/.test(email as string)) {
+    } else if (
+      !/^\S+@\S+\.\S+$/.test(typeof body.email === "string" ? body.email : "")
+    ) {
       return NextResponse.json({ error: "Valid email required" }, { status: 400 });
     }
 
-    const checkoutEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+    const checkoutEmail = typeof body.email === "string"
+      ? body.email.trim().toLowerCase()
+      : "";
 
     if (!WHOP_COMPANY_ID || !WHOP_PRODUCT_ID) {
       return NextResponse.json({ error: "Whop not configured" }, { status: 500 });
     }
 
-    const planId = WHOP_TIER_PLANS[tier];
-    const requestedDiscount = typeof discount === "number" && Number.isFinite(discount)
-      ? Math.round(discount)
+    const planId = WHOP_TIER_PLANS[body.tier];
+    const requestedDiscount = typeof body.discount === "number" && Number.isFinite(body.discount)
+      ? Math.round(body.discount)
       : 0;
-    const verifiedOffer = verifyDiscountToken(discountToken);
+    const verifiedOffer = verifyDiscountToken(body.discountToken);
     const safeDiscount = verifiedOffer?.discount ?? 0;
     if (requestedDiscount !== safeDiscount) {
       return NextResponse.json(
@@ -103,16 +119,15 @@ export async function POST(request: NextRequest) {
         { status: 503 },
       );
     }
-    const detail = WHOP_TIER_DETAILS[tier];
+    const detail = WHOP_TIER_DETAILS[body.tier];
     const metadata = {
       source: "longr_onboarding",
-      tier,
+      tier: body.tier,
       introductory_discount: safeDiscount,
       ...(checkoutEmail ? { onboarding_email: checkoutEmail } : {}),
     };
 
     try {
-      console.log("Creating checkout config...");
       const config = await whopsdk.checkoutConfigurations.create({
         account_id: WHOP_COMPANY_ID,
         plan_id: planId,
@@ -140,11 +155,11 @@ export async function POST(request: NextRequest) {
         },
       });
     } catch (error: any) {
-      console.error("[whop/checkout] config error:", error.message, error.stack);
+      console.error("[whop/checkout] config error:", error.message);
       return NextResponse.json({ error: "Checkout failed: " + error.message }, { status: 500 });
     }
   } catch (error: any) {
-    console.error("[whop/checkout] handler error:", error.message, error.stack);
+    console.error("[whop/checkout] handler error:", error.message);
     return NextResponse.json({ error: "Handler error: " + error.message }, { status: 500 });
   }
 }
