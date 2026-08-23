@@ -43,5 +43,10 @@
     "tsx": "^4.23.5",
     "typescript": "5.9.3"
   },
+  "overrides": {
+    "firebase-admin": {
+      "jwks-rsa": "3.2.2"
+    }
+  },
   "type": "module"
 }
