@@ -181,13 +181,18 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
       Date.now() - prefetchedAt.current < SESSION_MAX_AGE_MS;
 
     if (isCached && prefetchedSession.current) {
+      // Reuse the warm session whose iframe is already pre-rendered.
+      // Do NOT refetch here: a new sessionId would remount WhopCheckoutEmbed
+      // and force the card fields to reload from scratch while visible.
       setSession(prefetchedSession.current);
       setPreloadSession(null);
       prefetchedSession.current = null;
       prefetchedAt.current = 0;
+      onEvent?.("checkout_session_cached", { tier: selected, discount: activeDiscount });
+      return;
     }
 
-    // ── Fallback: on-demand fetch ──
+    // ── Fallback: on-demand fetch (only when no warm session is available) ──
     const currentUser = auth.currentUser;
     setLoading(true);
     try {
