@@ -232,19 +232,22 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
     finally { setLoading(false); }
   }
   function handleComplete(planId: string, receiptId?: string, result?: any) {
-    if (!session || !receiptId) {
-      setError("Payment completed, but the receipt is still being confirmed. Please use the secure checkout link or contact support.");
-      return;
-    }
+    // Payment has already succeeded on Whop's side — always proceed.
+    // receiptId may be undefined for ACH/bank payments that are still settling;
+    // the webhook handler and claim-purchase route handle async reconciliation.
+    // We must NOT guard on receiptId here or we silently drop those completions.
+    const currentSession = session ?? preloadSession;
+    const discount = currentSession?.pricing.discount ?? activeDiscount;
+    const sessionId = currentSession?.sessionId ?? "";
     setPaid(true);
     setCheckoutOpen(false);
-    onEvent?.("purchase_completed", { tier: selected, discount: session.pricing.discount, receiptId });
+    onEvent?.("purchase_completed", { tier: selected, discount, receiptId });
     window.setTimeout(() => onPaid?.({
-      receiptId,
+      receiptId: receiptId ?? "",
       planId,
-      sessionId: session.sessionId,
+      sessionId,
       tier: selected,
-      discount: session.pricing.discount,
+      discount,
     }), 700);
   }
   function closeCheckout() { setCheckoutOpen(false); setSession(null); setAbandonmentOpen(true); onEvent?.("checkout_closed", { tier: selected, discount: activeDiscount }); }
@@ -342,6 +345,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
             sessionId={activeSession.sessionId}
             theme="light"
             themeOptions={{ accentColor: variant === "step" ? "#4f46e5" : "#139447", buttonText: "Confirm secure payment" }}
+            skipRedirect
             returnUrl={`${publicAppUrl()}/hub`}
             promoCode={activeSession.promoCode ?? undefined}
             hideAddressForm

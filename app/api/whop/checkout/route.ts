@@ -105,6 +105,12 @@ export async function POST(request: NextRequest) {
     const verifiedOffer = verifyDiscountToken(body.discountToken);
     const safeDiscount = verifiedOffer?.discount ?? 0;
     if (requestedDiscount !== safeDiscount) {
+      console.error(
+        "[whop/checkout] discount mismatch — requested:", requestedDiscount,
+        "verified:", safeDiscount,
+        "token provided:", !!body.discountToken,
+        "hint: check CHECKOUT_SIGNING_SECRET env var is set in Vercel",
+      );
       return NextResponse.json(
         { error: safeDiscount === 0 ? "Discount expired" : "Invalid discount" },
         { status: 409 },

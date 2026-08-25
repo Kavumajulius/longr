@@ -229,6 +229,15 @@ export default function Onboarding() {
   async function handlePaymentComplete(purchase: PurchaseCompletion) {
     rememberPendingPurchase(purchase);
     const currentUser = auth.currentUser;
+
+    // receiptId is empty for ACH/bank payments that are still settling —
+    // the Whop webhook will write the subscription record asynchronously.
+    // We still proceed the user to the hub; the webhook covers reconciliation.
+    if (!purchase.receiptId) {
+      finishOnboarding();
+      return;
+    }
+
     if (!currentUser) {
       openAccountModal("payment");
       return;
