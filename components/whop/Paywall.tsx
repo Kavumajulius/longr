@@ -62,6 +62,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
   const [paid, setPaid] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [abandonmentOpen, setAbandonmentOpen] = useState(false);
+  const [abandonmentShown, setAbandonmentShown] = useState(false);
   const [preloadSession, setPreloadSession] = useState<CheckoutSession | null>(null);
   const [activeDiscount, setActiveDiscount] = useState(discount);
   const [activeDiscountToken, setActiveDiscountToken] = useState(discountToken);
@@ -262,7 +263,15 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
       discount,
     }), 700);
   }
-  function closeCheckout() { setCheckoutOpen(false); setSession(null); setAbandonmentOpen(true); onEvent?.("checkout_closed", { tier: selected, discount: activeDiscount }); }
+  function closeCheckout() { 
+    setCheckoutOpen(false); 
+    setSession(null); 
+    if (!abandonmentShown) {
+      setAbandonmentOpen(true); 
+      setAbandonmentShown(true);
+    }
+    onEvent?.("checkout_closed", { tier: selected, discount: activeDiscount }); 
+  }
   async function acceptSaveOffer() {
     setError("");
     try {
