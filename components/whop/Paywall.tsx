@@ -231,17 +231,30 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
     } catch (checkoutError) { setError(checkoutError instanceof Error ? checkoutError.message : "Something went wrong starting checkout."); }
     finally { setLoading(false); }
   }
-  function handleComplete(planId: string, receiptId?: string, result?: any) {
-    // Payment has already succeeded on Whop's side — always proceed.
-    // receiptId may be undefined for ACH/bank payments that are still settling;
-    // the webhook handler and claim-purchase route handle async reconciliation.
-    // We must NOT guard on receiptId here or we silently drop those completions.
+  async function handleComplete(planId: string, receiptId?: string, result?: any) {
     const currentSession = session ?? preloadSession;
     const discount = currentSession?.pricing.discount ?? activeDiscount;
     const sessionId = currentSession?.sessionId ?? "";
+
+    if (result?.type === "payment_failed") {
+      setError(result.message || "Payment failed. Please try again.");
+      setPaid(false);
+      setCheckoutOpen(true);
+      onEvent?.("payment_failed", { tier: selected, discount, receiptId: receiptId ?? "" });
+      return;
+    }
+
+    if (result?.type === "requires_action") {
+      onEvent?.("requires_action", { tier: selected, discount, receiptId: receiptId ?? "", result });
+      setError(result.message || "Payment requires additional action (e.g., 3D Secure).");
+      setPaid(false);
+      setCheckoutOpen(true);
+      return;
+    }
+
     setPaid(true);
     setCheckoutOpen(false);
-    onEvent?.("purchase_completed", { tier: selected, discount, receiptId });
+    onEvent?.("purchase_completed", { tier: selected, discount, receiptId: receiptId ?? "" });
     window.setTimeout(() => onPaid?.({
       receiptId: receiptId ?? "",
       planId,
@@ -348,7 +361,6 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
             skipRedirect
             returnUrl={`${publicAppUrl()}/hub`}
             promoCode={activeSession.promoCode ?? undefined}
-            hideAddressForm
             prefill={{ email: prefilledEmail.current }}
             onComplete={handleComplete}
             onPaymentError={(paymentError) => setError(paymentError.message || "Payment could not be completed.")}
