@@ -390,7 +390,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
       <section className="premium-library-preview" aria-labelledby="library-preview-title">
         <div className="premium-library-card">
           <div className="premium-library-heading"><div><BookOpen size={20} aria-hidden="true" /><span>Full Longr article library</span></div><strong>New short reads daily</strong></div>
-          <div className="premium-category-grid">{ACCESS_CATEGORIES.map(({ label, image }, index) => <article key={label}><div className="premium-category-image" style={{ width: "48px", height: "48px", overflow: "hidden", borderRadius: "12px", marginBottom: "12px", flexShrink: 0 }}><img src={image} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} /></div><small>Category {String(index + 1).padStart(2, "0")}</small><strong>{label}</strong></article>)}</div>
+          <div className="premium-category-grid">{ACCESS_CATEGORIES.map(({ label, image }, index) => <article key={label} className="premium-ref-card"><img src={image} alt={label} className="premium-ref-card-bg" /><div className="premium-ref-card-gradient" /><div className="premium-ref-card-tag">Category {String(index + 1).padStart(2, "0")}</div><div className="premium-ref-card-content"><div className="premium-ref-card-title">{label}</div><div className="premium-ref-card-desc">Daily {label.toLowerCase()} guidance, swaps, and inspiration.</div><button type="button" className="premium-ref-card-btn" tabIndex={-1}>Explore</button></div></article>)}</div>
           <div className="premium-library-fade" aria-hidden="true" />
         </div>
         <h2 id="library-preview-title">One membership. Daily food guidance across every category.</h2>

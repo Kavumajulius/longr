@@ -1051,3 +1051,97 @@ main.onb-main.refined-onboarding .interstitial-copy .cta-btn{width:100%;max-widt
   .longr-positioning-grid{padding:45px 18px;}
   .longr-credibility-strip{margin:0 18px 52px;padding:25px;}
 }
+
+/* New Premium Category Card Style based on reference */
+.premium-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+}
+@media(max-width: 760px) {
+  .premium-category-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+.premium-ref-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  text-align: left !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.premium-ref-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+.premium-ref-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.premium-ref-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 15, 10, 0.95) 0%, rgba(20, 15, 10, 0.5) 45%, transparent 100%);
+  z-index: 1;
+}
+.premium-ref-card-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+.premium-ref-card-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+}
+.premium-ref-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.premium-ref-card-desc {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.premium-ref-card-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  width: 100%;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.premium-ref-card-btn:hover {
+  filter: brightness(0.9);
+}
+
