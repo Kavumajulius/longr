@@ -38,15 +38,15 @@ export async function POST(request: NextRequest) {
       }
       return NextResponse.json({ discount, token });
     } else if (body.action === "boost") {
-      if (!body.token) {
-        return NextResponse.json({ error: "Token required" }, { status: 400 });
+      let discount = 10;
+      if (body.token) {
+        // The token is a signed string, verification handles parsing
+        const current = verifyDiscountToken(body.token as string);
+        if (!current) {
+          return NextResponse.json({ error: "The discount offer has expired" }, { status: 409 });
+        }
+        discount = Math.min(45, current.discount + 10);
       }
-      // The token is a signed string, verification handles parsing
-      const current = verifyDiscountToken(body.token as string);
-      if (!current) {
-        return NextResponse.json({ error: "The discount offer has expired" }, { status: 409 });
-      }
-      const discount = Math.min(45, current.discount + 10);
       const newToken = issueDiscountToken(discount);
       if (!newToken) {
         return NextResponse.json(
