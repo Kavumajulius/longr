@@ -15,16 +15,15 @@ const PLANS: PlanDef[] = [
   { tier: "annual", name: "Annual", amount: 79.99, period: "/year", note: "Equivalent to $6.67/month", renewal: "$79.99 annually", recommended: true },
 ];
 const ACCESS_CATEGORIES = [
-  { label: "Heart health", icon: HeartPulse, tone: "coral" },
-  { label: "Brain health", icon: Brain, tone: "violet" },
-  { label: "Metabolic health", icon: Flame, tone: "amber" },
-  { label: "Strength", icon: Dumbbell, tone: "blue" },
-  { label: "Everyday meals", icon: Salad, tone: "green" },
-  { label: "Food labels", icon: Wheat, tone: "gold" },
-  { label: "Smart shopping", icon: ShoppingBasket, tone: "aqua" },
-  { label: "Preparation", icon: ChefHat, tone: "rose" },
-  { label: "Healthy aging", icon: Activity, tone: "indigo" },
-  { label: "Practical swaps", icon: Soup, tone: "mint" },
+  { label: "Heart & Metabolic Health", image: "/images/categories/heart_metabolic.png" },
+  { label: "Brain Health", image: "/images/categories/brain_health.png" },
+  { label: "Strength & Mobility", image: "/images/categories/strength_mobility.png" },
+  { label: "Healthy Aging", image: "/images/categories/healthy_aging.png" },
+  { label: "Better Breakfasts", image: "/images/categories/better_breakfast.png" },
+  { label: "Smart Grocery Shopping", image: "/images/categories/grocery_shopping.png" },
+  { label: "Everyday Food Swaps", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=300&q=80" },
+  { label: "Labels & Preparation", image: "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=300&q=80" },
+  { label: "Eat More Often", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=300&q=80" },
 ];
 interface CheckoutPricing {
   currency: "usd";
@@ -391,7 +390,7 @@ export default function Paywall({ variant = "step", userEmail, userName, answers
       <section className="premium-library-preview" aria-labelledby="library-preview-title">
         <div className="premium-library-card">
           <div className="premium-library-heading"><div><BookOpen size={20} aria-hidden="true" /><span>Full Longr article library</span></div><strong>New short reads daily</strong></div>
-          <div className="premium-category-grid">{ACCESS_CATEGORIES.map(({ label, icon: Icon, tone }, index) => <article key={label}><div className={`premium-category-icon tone-${tone}`}><Icon size={26} aria-hidden="true" /></div><small>Category {String(index + 1).padStart(2, "0")}</small><strong>{label}</strong></article>)}</div>
+          <div className="premium-category-grid">{ACCESS_CATEGORIES.map(({ label, image }, index) => <article key={label}><div className="premium-category-image" style={{ width: "48px", height: "48px", overflow: "hidden", borderRadius: "12px", marginBottom: "12px", flexShrink: 0 }}><img src={image} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} /></div><small>Category {String(index + 1).padStart(2, "0")}</small><strong>{label}</strong></article>)}</div>
           <div className="premium-library-fade" aria-hidden="true" />
         </div>
         <h2 id="library-preview-title">One membership. Daily food guidance across every category.</h2>
