@@ -1,35 +1,81 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee-01-utils/marquee";
 
-const originalReviews = [
+const reviews = [
   {
     name: "Amina W.",
     location: "Kampala, Uganda",
     result: "+18 min Life Gained/Day",
     quote: "I swapped white rice for cauliflower rice. Didn't think it would make a difference. My energy levels completely transformed within 2 weeks.",
-    avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80"
+    avatar: "/images/amina_40plus_1788156836990.png"
   },
   {
     name: "Marcus T.",
     location: "London, UK",
     result: "+24 min Life Gained/Day",
     quote: "The Life Gain counter is what hooked me. It's oddly addictive seeing minutes stack up. I'm up 24 minutes a day just from diet swaps.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+    avatar: "/images/marcus_40plus_1788156850933.png"
   },
   {
     name: "Wanjiru K.",
     location: "Nairobi, Kenya",
     result: "+31 min Life Gained/Day",
     quote: "Finally, nutrition content that doesn't read like a supplement ad. Just the science in 2 minutes. My whole family has changed how we eat.",
-    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=100&q=80"
+    avatar: "/images/wanjiru_40plus_1788156865208.png"
+  },
+  {
+    name: "Yuki H.",
+    location: "Tokyo, Japan",
+    result: "+22 min Life Gained/Day",
+    quote: "Eating traditional Japanese foods with a longevity twist has been life-changing. The personalized plan makes it so simple and intuitive to follow every day.",
+    avatar: "/images/yuki_40plus.png"
+  },
+  {
+    name: "Min-jun P.",
+    location: "Seoul, South Korea",
+    result: "+15 min Life Gained/Day",
+    quote: "I was skeptical at first, but adjusting my macros based on the science here gave me an incredible energy boost. I feel younger than I did ten years ago.",
+    avatar: "/images/minjun_40plus.png"
+  },
+  {
+    name: "Sarah M.",
+    location: "Toronto, Canada",
+    result: "+27 min Life Gained/Day",
+    quote: "The science-backed feed is my morning reading now. It's easy to digest and immediately applicable. My biological clock is definitely thanking me.",
+    avatar: "/images/sarah_40plus.png"
+  },
+  {
+    name: "Liam C.",
+    location: "Sydney, Australia",
+    result: "+19 min Life Gained/Day",
+    quote: "Making small swaps down under! Didn't have to give up my favorite meals, just tweaked them. The extra minutes gained feel very real when I'm surfing.",
+    avatar: "/images/liam_40plus.jpg"
+  },
+  {
+    name: "David R.",
+    location: "Austin, Texas",
+    result: "+21 min Life Gained/Day",
+    quote: "I used to rely on energy drinks. Since taking the quiz and shifting my eating habits, I'm firing on all cylinders naturally. Best decision ever.",
+    avatar: "/images/david_40plus.jpg"
+  },
+  {
+    name: "Emma S.",
+    location: "Berlin, Germany",
+    result: "+25 min Life Gained/Day",
+    quote: "German efficiency applied to health! The daily plan is completely stress-free. Watching the life gain tracker go up gives me peace of mind.",
+    avatar: "/images/emma_40plus.jpg"
+  },
+  {
+    name: "Lucia M.",
+    location: "Rome, Italy",
+    result: "+28 min Life Gained/Day",
+    quote: "I love that I can still enjoy Mediterranean flavors while optimizing for longevity. The science is sound, and the results speak for themselves.",
+    avatar: "/images/lucia_40plus.jpg"
   }
 ];
 
-// Duplicate the reviews to ensure we have enough for two smooth scrolling rows
-const reviews = [...originalReviews, ...originalReviews, ...originalReviews];
-
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+const firstRow = reviews.slice(0, 5);
+const secondRow = reviews.slice(5, 10);
 
 const ReviewCard = ({
   avatar,

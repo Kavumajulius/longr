@@ -30,10 +30,10 @@ const HERO_PLATES = [
 ];
 
 const CARD_IMAGES = {
-  plan: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80",
-  science: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80",
-  platform: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1920&q=80",
-  book: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=800&q=80",
+  plan: "/images/healthy_meal_plan_1788153236006.png",
+  science: "/images/science_food_1788153256636.png",
+  platform: "/images/mediterranean_spread_1788153271636.png",
+  book: "/images/healthy_food_book_1788153287226.png",
 };
 
 const TRUSTED_BY = [
@@ -134,7 +134,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
           </h2>
           
           <img 
-            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" 
+            src="/images/hero_food_bowl_1788153300357.png" 
             alt="Healthy Longevity Food and Recipes" 
             className="lc-sl-hero-img" 
           />
