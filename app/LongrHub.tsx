@@ -10,6 +10,7 @@ import {
   type FormEvent,
   type MouseEvent,
 } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -25,6 +26,7 @@ import { useAuth } from "@/lib/useAuth";
 import { categories, type Category } from "./longr-data";
 import type { LongrArticle } from "./articles/types";
 import Paywall from "@/components/whop/Paywall";
+import HeroSubtitle from "@/components/HeroSubtitle";
 
 type FeedMode = "all" | "workouts";
 type ShareTarget = "linkedin" | "whatsapp" | "x" | "facebook" | "email" | "copy";
@@ -505,11 +507,9 @@ export default function LongrHub({
         </header>
 
         <section className="hero" aria-labelledby="hero-title">
-          <h1 id="hero-title">Live Longer</h1>
-          <div className="meta-info">
-            <span className="match">Today&apos;s Pick</span>
-            <span className="year">2026</span>
-          </div>
+          <h1 id="hero-title">Choose to Live Longer.</h1>
+
+          <HeroSubtitle />
           {articles.length > 0 && (
             <div className="buttons">
               <button
@@ -522,13 +522,17 @@ export default function LongrHub({
               <button
                 className="more-info-btn"
                 type="button"
-                aria-label="More information about today’s pick"
+                aria-label="More information about today's pick"
                 onClick={() => openArticle(articles[0])}
               >
                 +
               </button>
             </div>
           )}
+          <div className="meta-info">
+            <span className="match">Today&apos;s Pick</span>
+            <span className="year">2026</span>
+          </div>
         </section>
 
         <section

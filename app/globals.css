@@ -232,9 +232,11 @@ header {
 .hero h1 {
   font-size: 48px;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   letter-spacing: 1px;
 }
+
+
 
 .meta-info {
   display: flex;

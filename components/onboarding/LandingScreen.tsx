@@ -46,10 +46,10 @@ const TRUSTED_BY = [
 ];
 
 const PLATFORM_FEATURES = [
-  { icon: "ðŸ“Š", title: "Longevity Score", desc: "Your personal food health score based on your diet, goals, and age. Know exactly where you stand." },
-  { icon: "ðŸ“‹", title: "7-Day Eat-Right Plan", desc: "A done-for-you daily meal plan built around your goals. No research, no guesswork." },
-  { icon: "ðŸ“°", title: "Daily Longevity Feed", desc: "New science-backed articles every day across 30+ categories from nutrition to sleep to gut health." },
-  { icon: "💪", title: "Life Gain Tracker", desc: "Track the exact minutes of healthy life you are gaining from every food swap you make." },
+  { icon: "/images/icon_apple.png", title: "Longevity Score", desc: "Your personal food health score based on your diet, goals, and age. Know exactly where you stand." },
+  { icon: "/images/icon_avocado.png", title: "7-Day Eat-Right Plan", desc: "A done-for-you daily meal plan built around your goals. No research, no guesswork." },
+  { icon: "/images/icon_salad.png", title: "Daily Longevity Feed", desc: "New science-backed articles every day across 30+ categories from nutrition to sleep to gut health." },
+  { icon: "/images/icon_orange.png", title: "Life Gain Tracker", desc: "Track the exact minutes of healthy life you are gaining from every food swap you make." },
 ];
 
 export default function LandingScreen({ onNext }: { onNext: () => void }) {
@@ -81,13 +81,11 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
 
           {/* Big Typography styled like "BIO food" */}
           <div className="lc-bio-title-wrap">
-            <h1 className="lc-bio-main-title">Choose to Live Longer.</h1>
+            <h1 className="lc-bio-main-title"><strong>Choose to Live Longer.</strong></h1>
           </div>
 
           {/* Subtext and Badge */}
-          <p className="lc-bio-subtitle-text">
-            How to Eat Right, Turn Back Your Biological Clock, and Add Decades of Healthy Years to Your Life. Take our 90-second science-backed quiz to get your personalized Longevity Score and custom 7-Day Plan.
-          </p>
+          <p className="lc-bio-subtitle-text"><strong>How to Eat Right, Protect Your Health, and Get as Many Healthy Years Out of Your Life as Possible.</strong> Take our 90-second science-backed quiz to get your personalized Longevity Score and custom 7-Day Plan.</p>
 
           <div className="lc-bio-badge-row">
             <span className="lc-bio-check-pill">✓ 90 Seconds</span>
@@ -271,7 +269,9 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
           <div className="lc-features-grid">
             {PLATFORM_FEATURES.map((f) => (
               <div key={f.title} className="lc-feature-item">
-                <div className="lc-feature-icon">{f.icon}</div>
+                <div className="lc-feature-icon">
+                  <img src={f.icon} alt={f.title} className="w-8 h-8 object-contain" />
+                </div>
                 <div>
                   <div className="lc-feature-title">{f.title}</div>
                   <div className="lc-feature-desc">{f.desc}</div>
@@ -343,7 +343,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
           <img src="/images/plate_acai_1786262412142.png" className="lc-plate lc-plate-4" alt="Acai Bowl Plate" />
         </div>
         <div className="lc-guarantee-badge-icon">💪</div>
-        <h2 className="lc-guarantee-title">WE GUARANTEE YOU'LL LEARN ONE THING THAT CHANGES WHAT'S ON YOUR PLATE<br />— OR YOUR NEXT PLAN IS ON US.</h2>
+        <h2 className="lc-guarantee-title">WE GUARANTEE YOU'LL LEARN HOW TO EAT BETTER AND ADD MORE HEALTHY YEARS TO YOUR LIFE<br />— OR WE WILL REFUND YOUR PLAN --</h2>
         <p className="lc-guarantee-body">
           Follow your 7-Day Eat-Right Plan for one week. If you don't walk away with at least one swap you'll actually keep — tell us. We'll build you a second plan at zero cost. No fine print. No gotchas. No questions asked.
         </p>
