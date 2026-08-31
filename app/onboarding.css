@@ -99,7 +99,7 @@ p.step-sub{color:#9aa0a6;font-size:0.95em;line-height:1.55;margin-bottom:30px;ma
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   align-self: center;
 }
 .lc-bio-logo-icon {
@@ -127,7 +127,7 @@ p.step-sub{color:#9aa0a6;font-size:0.95em;line-height:1.55;margin-bottom:30px;ma
 /* Title wrap & overlaps */
 .lc-bio-title-wrap {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-left: -5px;
 }
 .lc-bio-main-title {

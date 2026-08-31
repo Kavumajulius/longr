@@ -12,6 +12,7 @@ import {
 } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import FloatingSubtitle from "@/components/ui/FloatingSubtitle";
 import { signOut } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import {
@@ -26,7 +27,6 @@ import { useAuth } from "@/lib/useAuth";
 import { categories, type Category } from "./longr-data";
 import type { LongrArticle } from "./articles/types";
 import Paywall from "@/components/whop/Paywall";
-import HeroSubtitle from "@/components/HeroSubtitle";
 
 type FeedMode = "all" | "workouts";
 type ShareTarget = "linkedin" | "whatsapp" | "x" | "facebook" | "email" | "copy";
@@ -509,7 +509,7 @@ export default function LongrHub({
         <section className="hero" aria-labelledby="hero-title">
           <h1 id="hero-title">Choose to Live Longer.</h1>
 
-          <HeroSubtitle />
+          <FloatingSubtitle />
           {articles.length > 0 && (
             <div className="buttons">
               <button

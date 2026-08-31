@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import FloatingSubtitle from "@/components/ui/FloatingSubtitle";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import TestimonialMarquee from "@/components/ui/marquee-01";
 import {
@@ -84,8 +85,10 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
             <h1 className="lc-bio-main-title"><strong>Choose to Live Longer.</strong></h1>
           </div>
 
+          <FloatingSubtitle />
+
           {/* Subtext and Badge */}
-          <p className="lc-bio-subtitle-text"><strong>How to Eat Right, Protect Your Health, and Get as Many Healthy Years Out of Your Life as Possible.</strong> Take our 90-second science-backed quiz to get your personalized Longevity Score and custom 7-Day Plan.</p>
+          <p className="lc-bio-subtitle-text">Take our 90-second science-backed quiz to get your personalized Longevity Score and custom 7-Day Plan.</p>
 
           <div className="lc-bio-badge-row">
             <span className="lc-bio-check-pill">✓ 90 Seconds</span>
