@@ -49,7 +49,7 @@ const PLATFORM_FEATURES = [
   { icon: "ðŸ“Š", title: "Longevity Score", desc: "Your personal food health score based on your diet, goals, and age. Know exactly where you stand." },
   { icon: "ðŸ“‹", title: "7-Day Eat-Right Plan", desc: "A done-for-you daily meal plan built around your goals. No research, no guesswork." },
   { icon: "ðŸ“°", title: "Daily Longevity Feed", desc: "New science-backed articles every day across 30+ categories from nutrition to sleep to gut health." },
-  { icon: "â±ï¸", title: "Life Gain Tracker", desc: "Track the exact minutes of healthy life you are gaining from every food swap you make." },
+  { icon: "💪", title: "Life Gain Tracker", desc: "Track the exact minutes of healthy life you are gaining from every food swap you make." },
 ];
 
 export default function LandingScreen({ onNext }: { onNext: () => void }) {
@@ -65,14 +65,14 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
   return (
     <div className="lc-root">
 
-      {/* â”€â”€ SECTION 1: HERO â€” GENERATED CLONE IMAGE BACKGROUND â”€â”€ */}
+      {/* SECTION 1: HERO — GENERATED CLONE IMAGE BACKGROUND */}
       <section className="lc-hero-clone" style={{ backgroundImage: `url('/images/hero_bg.png')` }}>
         
         {/* LEFT COLUMN: Clean white background with branding and typography overlay */}
         <div className="lc-clone-left-content">
           {/* Logo & Header */}
           <div className="lc-bio-header">
-            <span className="lc-bio-logo-icon">â™¥</span>
+            <span className="lc-bio-logo-icon">⚡</span>
             <div className="lc-bio-logo-text">
               <span className="lc-bio-logo-title">LONGR</span>
             <span className="lc-bio-logo-subtitle">EAT SMARTER. LIVE LONGER.</span>
@@ -90,9 +90,9 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
           </p>
 
           <div className="lc-bio-badge-row">
-            <span className="lc-bio-check-pill">âœ“ 90 Seconds</span>
-            <span className="lc-bio-check-pill">âœ“ 100% Free</span>
-            <span className="lc-bio-check-pill">âœ“ Science-Backed</span>
+            <span className="lc-bio-check-pill">✓ 90 Seconds</span>
+            <span className="lc-bio-check-pill">✓ 100% Free</span>
+            <span className="lc-bio-check-pill">✓ Science-Backed</span>
           </div>
 
           <button className="lc-cta-primary lc-bio-cta" onClick={onNext}>
@@ -101,14 +101,14 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
 
           {/* Footer details */}
           <div className="lc-bio-footer-links">
-            <span className="lc-bio-footer-social">ðŸŒ ðŸ…µ ðŸ†ƒ ðŸ…¸</span>
+            <span className="lc-bio-footer-social">📞 📧 📍 💬</span>
             <span className="lc-bio-footer-web">longr.io</span>
             <span className="lc-bio-footer-phone">+34 786 5214 32</span>
           </div>
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2: "AS SEEN IN" TRUST STRIP â”€â”€ */}
+      {/* SECTION 2: "AS SEEN IN" TRUST STRIP */}
       <section className="lc-trust-strip">
         <p className="lc-trust-label">AS FEATURED IN &amp; TRUSTED BY READERS FROM</p>
         <InfiniteSlider gap={72} duration={28} className="lc-trust-marquee">
@@ -126,7 +126,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
         </InfiniteSlider>
       </section>
 
-      {/* â”€â”€ SECTION 2.5: SALES LETTER NARRATIVE â”€â”€ */}
+      {/* SECTION 2.5: SALES LETTER NARRATIVE */}
       <section className="lc-sales-letter">
         <div className="lc-sl-container">
           <h2 className="lc-sl-headline">
@@ -184,7 +184,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3: TWO-PATH OFFER CARDS â”€â”€ */}
+      {/* SECTION 3: TWO-PATH OFFER CARDS */}
       <section className="lc-paths-section">
         <p className="lc-eyebrow">CHOOSE YOUR PATH TO A LONGER LIFE</p>
         <h2 className="lc-section-title">Two Ways to Eat Smarter.<br /><span className="lc-green">One Goal: Add Years to Your Life.</span></h2>
@@ -196,7 +196,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
                 <span className="lc-path-tag">DONE FOR YOU</span>
               </div>
               <div className="lc-path-body">
-                <h3>ðŸ§­ THE PLAN</h3>
+                <h3>🍽️ THE PLAN</h3>
                 <p>Get a personalized daily eating plan built around your goal. No research, no guesswork. Just follow the swaps.</p>
                 <button className="lc-cta-secondary" onClick={onNext}>Get My Free Plan &rarr;</button>
               </div>
@@ -209,7 +209,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
                 <span className="lc-path-tag lc-path-tag-alt">LEARN THE SCIENCE</span>
               </div>
               <div className="lc-path-body">
-                <h3>ðŸ“š THE SCIENCE</h3>
+                <h3>🔬 THE SCIENCE</h3>
                 <p>Understand the "why" behind every food swap. Science-backed breakdowns so you can make the right calls for life.</p>
                 <button className="lc-cta-secondary" onClick={onNext}>Explore the Feed &rarr;</button>
               </div>
@@ -220,7 +220,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
 
       <img src="/images/food.png" alt="Longevity food" className="lc-paths-photo" />
 
-      {/* â”€â”€ SECTION 4: GROW FASTER BOLD STATEMENT â”€â”€ */}
+      {/* SECTION 4: GROW FASTER BOLD STATEMENT */}
       <section className="lc-bold-statement">
         <div className="lc-bold-statement-inner">
           <p className="lc-eyebrow lc-eyebrow-green">THE LONGR DIFFERENCE</p>
@@ -236,7 +236,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
               { num: "184K", label: "Minutes of Life Gained" },
               { num: "12K+", label: "Daily Active Readers" },
               { num: "30+", label: "Longevity Categories" },
-              { num: "4.8â˜…", label: "Average Reader Rating" },
+              { num: "4.8", label: "Average Reader Rating" },
             ].map(s => (
               <div key={s.label} className="lc-bold-stat-stack">
                 <div className="lc-bold-stat-card">
@@ -252,7 +252,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
 
       <img src="/images/foodie.png" alt="Longevity food" className="lc-paths-photo" />
 
-      {/* â”€â”€ SECTION 5: SUCCESS STORIES â”€â”€ */}
+      {/* SECTION 5: SUCCESS STORIES */}
       <section className="lc-success-section">
         <p className="lc-eyebrow lc-eyebrow-green">READER RESULTS</p>
         <h2 className="lc-section-title">Become Our Next <span className="lc-green">Success Story</span></h2>
@@ -261,13 +261,13 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
         <button className="lc-cta-outline" style={{ marginTop: '64px' }} onClick={onNext}>See If LONGR Is Right for You &rarr;</button>
       </section>
 
-      {/* â”€â”€ SECTION 6: THE PLATFORM â”€â”€ */}
+      {/* SECTION 6: THE PLATFORM */}
       <section className="lc-platform-section" style={{ backgroundImage: `url(${CARD_IMAGES.platform})` }}>
         <div className="lc-platform-overlay" />
         <div className="lc-platform-content">
           <p className="lc-eyebrow lc-eyebrow-green">EVERYTHING YOU NEED</p>
           <h2 className="lc-platform-title">The Power Is<br />In the Platform</h2>
-          <p className="lc-platform-sub">One free account. Everything you need to build a longer, healthier life â€” starting today.</p>
+          <p className="lc-platform-sub">One free account. Everything you need to build a longer, healthier life — starting today.</p>
           <div className="lc-features-grid">
             {PLATFORM_FEATURES.map((f) => (
               <div key={f.title} className="lc-feature-item">
@@ -283,25 +283,25 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7: OFFER SECTION â”€â”€ */}
+      {/* SECTION 7: OFFER SECTION */}
       <section className="lc-offer-section">
         <div className="lc-offer-inner">
           <div className="lc-offer-text">
             <p className="lc-eyebrow lc-eyebrow-green">FREE FOR A LIMITED TIME</p>
             <h2 className="lc-offer-title">Get Your Free<br /><span className="lc-green">Longevity Score</span><br />+ 7-Day Plan</h2>
             <p className="lc-offer-sub">
-              This is the same personalized framework used by thousands of readers who have already added minutes â€” and years â€” to their lives. And right now, it's completely free.
+              This is the same personalized framework used by thousands of readers who have already added minutes — and years — to their lives. And right now, it's completely free.
             </p>
             <ul className="lc-offer-checklist">
               {[
                 "Your personalized Longevity Score (based on your goals & diet)",
-                "A free 7-Day Eat-Right Plan â€” built for you, not a generic template",
+                "A free 7-Day Eat-Right Plan — built for you, not a generic template",
                 "4 science-backed articles unlocked instantly",
                 "Access to the full LONGR daily feed (30+ longevity categories)",
                 "Life Gain tracker to watch your minutes compound daily"
               ].map(item => (
                 <li key={item} className="lc-offer-check-item">
-                  <span className="lc-check-icon">âœ“</span>
+                  <span className="lc-check-icon">✓</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -320,12 +320,12 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
                   { icon: "ðŸ“Š", label: "Longevity Score" },
                   { icon: "ðŸ“‹", label: "7-Day Plan" },
                   { icon: "ðŸ“°", label: "4 Articles" },
-                  { icon: "â±ï¸", label: "Life Tracker" },
+                  { icon: "💪", label: "Life Tracker" },
                 ].map(u => (
                   <div key={u.label} className="lc-mockup-unlock">
                     <div className="lc-mockup-unlock-icon">{u.icon}</div>
                     <div className="lc-mockup-unlock-label">{u.label}</div>
-                    <div className="lc-mockup-unlock-badge">âœ“ Unlocked</div>
+                    <div className="lc-mockup-unlock-badge">✓ Unlocked</div>
                   </div>
                 ))}
               </div>
@@ -334,7 +334,7 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 8: GUARANTEE â”€â”€ */}
+      {/* SECTION 8: GUARANTEE */}
       <section className="lc-guarantee-section">
         <div className="lc-rotating-plates">
           <img src="/images/plate_salad_1786262386344.png" className="lc-plate lc-plate-1" alt="Healthy Salad Plate" />
@@ -342,22 +342,22 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
           <img src="/images/plate_mediterranean_1786262400354.png" className="lc-plate lc-plate-3" alt="Mediterranean Plate" />
           <img src="/images/plate_acai_1786262412142.png" className="lc-plate lc-plate-4" alt="Acai Bowl Plate" />
         </div>
-        <div className="lc-guarantee-badge-icon">ðŸ›¡ï¸</div>
-        <h2 className="lc-guarantee-title">WE GUARANTEE YOU'LL LEARN ONE THING THAT CHANGES WHAT'S ON YOUR PLATE<br />â€” OR YOUR NEXT PLAN IS ON US.</h2>
+        <div className="lc-guarantee-badge-icon">💪</div>
+        <h2 className="lc-guarantee-title">WE GUARANTEE YOU'LL LEARN ONE THING THAT CHANGES WHAT'S ON YOUR PLATE<br />— OR YOUR NEXT PLAN IS ON US.</h2>
         <p className="lc-guarantee-body">
-          Follow your 7-Day Eat-Right Plan for one week. If you don't walk away with at least one swap you'll actually keep â€” tell us. We'll build you a second plan at zero cost. No fine print. No gotchas. No questions asked.
+          Follow your 7-Day Eat-Right Plan for one week. If you don't walk away with at least one swap you'll actually keep — tell us. We'll build you a second plan at zero cost. No fine print. No gotchas. No questions asked.
         </p>
         <div className="lc-guarantee-points">
-          <div className="lc-gp"><span>âœ…</span><span>100% Free to Start</span></div>
-          <div className="lc-gp"><span>âœ…</span><span>No Card Required</span></div>
-          <div className="lc-gp"><span>âœ…</span><span>Science-Backed Results</span></div>
+          <div className="lc-gp"><span>✓</span><span>100% Free to Start</span></div>
+          <div className="lc-gp"><span>✓</span><span>No Card Required</span></div>
+          <div className="lc-gp"><span>✓</span><span>Science-Backed Results</span></div>
         </div>
         <button className="lc-guarantee-btn" onClick={onNext}>
           Live Longer &rarr;
         </button>
       </section>
 
-      {/* â”€â”€ SECTION 9: FINAL CTA â”€â”€ */}
+      {/* SECTION 9: FINAL CTA */}
       <section className="lc-final-cta">
         <div className="lc-final-cta-inner">
           <p className="lc-eyebrow lc-eyebrow-green">STOP WAITING. START LIVING LONGER.</p>
@@ -371,13 +371,13 @@ export default function LandingScreen({ onNext }: { onNext: () => void }) {
             Add Me Some Years Now &rarr;
           </button>
           <div className="lc-final-trust">
-            <span>â˜…â˜…â˜…â˜…â˜… 4.8</span>
-            <span>Â·</span>
+            <span>⭐⭐⭐⭐⭐ 4.8</span>
+            <span>·</span>
             <span>12,000+ Readers</span>
-            <span>Â·</span>
-            <span>ðŸ”’ 100% Free</span>
-            <span>Â·</span>
-            <span>âš¡ 90 Seconds</span>
+            <span>·</span>
+            <span>✅ 100% Free</span>
+            <span>·</span>
+            <span>⏱️ 90 Seconds</span>
           </div>
         </div>
       </section>
