@@ -13,7 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, type User } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { Activity, ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronRight, Clock3, Compass, Leaf, ShieldCheck, Sparkles, Target, TrendingUp } from "lucide-react";
+import { Activity, ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronRight, Clock3, Compass, Leaf, ShieldCheck, Sparkles, Target, TrendingUp, AlertTriangle } from "lucide-react";
 import { auth, db } from "../../lib/firebase";
 import { useAuth } from "../../lib/useAuth";
 import { trackOnboardingEvent } from "../../lib/onboarding-analytics";
@@ -466,7 +466,7 @@ function HealthyYearsProfile({ answers, onContinue }: { answers: OnboardingAnswe
     ? "You want clarity without nutrition noise"
     : ["not_very", "dont_know", "unsure_several"].includes(answers.food_choice_confidence)
       ? "You want a clearer everyday starting point"
-      : "You’re ready to refine informed food choices";
+      : "You're ready to refine informed food choices";
   const rows = [
     ["Future priority", answerLabel("deep_future_priority", answers.deep_future_priority)],
     ["Current focus", answerLabel("current_food_health_focus", answers.current_food_health_focus)],
@@ -479,68 +479,70 @@ function HealthyYearsProfile({ answers, onContinue }: { answers: OnboardingAnswe
   return (
     <section className="screen active profile-screen">
       <div className="healthy-profile-dashboard">
-        <nav className="profile-dashboard-nav" aria-label="Profile sections">
-          <div className="profile-dashboard-brand"><Leaf size={17} aria-hidden="true" /><span>Longr profile</span></div>
-          <div className="profile-dashboard-tabs" aria-hidden="true"><span className="active">Overview</span><span>Focus areas</span><span>First step</span></div>
-          <div className="profile-private"><ShieldCheck size={15} aria-hidden="true" /> Private profile</div>
-        </nav>
+        <div className="profile-scrollable-body">
+          <nav className="profile-dashboard-nav" aria-label="Profile sections">
+            <div className="profile-dashboard-brand"><Leaf size={17} aria-hidden="true" /><span>Longr profile</span></div>
+            <div className="profile-dashboard-tabs" aria-hidden="true"><span className="active">Overview</span><span>Focus areas</span><span>First step</span></div>
+            <div className="profile-private"><ShieldCheck size={15} aria-hidden="true" /> Private profile</div>
+          </nav>
 
-        <header className="profile-dashboard-heading">
-          <div className="profile-avatar" aria-hidden="true">{initial}</div>
-          <div>
-            <p className="quiz-kicker">Your Healthy Years Profile</p>
-            <h1 className="step-title">{answers.first_name}, here’s where Longr can help most.</h1>
+          <div className="profile-hero-card">
+            <div className="profile-hero-avatar" aria-hidden="true">{initial}</div>
+            <div className="profile-hero-text">
+              <p className="quiz-kicker">Your Healthy Years Profile</p>
+              <h1 className="step-title">{answers.first_name}, here's where Longr can help most.</h1>
+              <p className="profile-hero-sub">Based on your answers, Longr has identified the food guidance most relevant to you.</p>
+            </div>
+            <div className="profile-complete"><CheckCircle2 size={17} aria-hidden="true" /><span>Profile complete</span></div>
           </div>
-          <div className="profile-complete"><CheckCircle2 size={17} aria-hidden="true" /><span>Profile complete</span></div>
-        </header>
 
-        <p className="profile-dashboard-disclaimer">This is a content-personalization profile, not a diagnosis or health-risk score.</p>
+          <p className="profile-dashboard-disclaimer">This is a content-personalization profile, not a diagnosis or health-risk score.</p>
 
-        <div className="profile-dashboard-grid">
-          <aside className="profile-overview-column" aria-label="Profile overview">
-            <div className="profile-age-selector"><span className="profile-mini-icon"><Compass size={18} aria-hidden="true" /></span><div><small>Age focus</small><strong>{ageFocus(answers.age_bracket)}</strong></div><span className="profile-selector-arrow" aria-hidden="true">⌄</span></div>
-            <div className="profile-signal-count"><strong>{rows.length}</strong><span>personalized signals<br />connected</span></div>
-            <article className="profile-activity-card">
-              <div className="profile-card-label"><span>Path activity</span><span className="profile-live-pill">Ready</span></div>
-              <dl>
-                <div><dt>Priority</dt><dd>{rows[0][1]}</dd></div>
-                <div><dt>First focus</dt><dd>{rows[4][1]}</dd></div>
-                <div><dt>Pace</dt><dd>{rows[5][1]}</dd></div>
-              </dl>
-            </article>
-          </aside>
+          <div className="profile-signal-strip">
+            <div className="profile-signal-item"><span className="profile-signal-count"><strong>{rows.length}</strong></span><span>personalized signals<br />connected</span></div>
+          </div>
 
-          <section className="profile-recommendation-column" aria-label="Longr recommendation">
-            <article className="profile-primary-card">
-              <div className="profile-card-label"><span><Sparkles size={15} aria-hidden="true" /> Your Longr recommendation</span><span className="profile-personalized-pill">Personalized</span></div>
-              <p>{blockerPromise(answers.primary_food_blocker)} Start with age-relevant food decisions you can use immediately, then build one small habit at a time.</p>
-              <div className="profile-card-proof"><span><CheckCircle2 size={14} aria-hidden="true" /> Based on your answers</span><span><ShieldCheck size={14} aria-hidden="true" /> Educational guidance</span></div>
-            </article>
+          <div className="profile-cards-grid">
+            <div className="profile-card-col">
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Compass size={15} aria-hidden="true" /> Age focus</span></div>
+                <strong>{ageFocus(answers.age_bracket)}</strong>
+              </article>
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Target size={15} aria-hidden="true" /> Future priority</span></div>
+                <strong>{rows[0][1]}</strong>
+                <small>{rows[0][0]}</small>
+              </article>
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Activity size={15} aria-hidden="true" /> Current focus</span></div>
+                <strong>{rows[1][1]}</strong>
+                <small>{rows[1][0]}</small>
+              </article>
+            </div>
+            <div className="profile-card-col">
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Sparkles size={15} aria-hidden="true" /> Food clarity</span></div>
+                <strong>{rows[2][1]}</strong>
+                <small>{rows[2][0]}</small>
+              </article>
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><AlertTriangle size={15} aria-hidden="true" /> Biggest friction</span></div>
+                <strong>{rows[3][1]}</strong>
+                <small>{rows[3][0]}</small>
+              </article>
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Clock3 size={15} aria-hidden="true" /> Learning pace</span></div>
+                <strong>{rows[5][1]}</strong>
+                <small>{rows[5][0]}</small>
+              </article>
+            </div>
+          </div>
 
-            <article className="profile-start-card">
-              <span className="profile-card-icon"><Target size={19} aria-hidden="true" /></span>
-              <div><small>First practical focus</small><strong>{rows[4][1]}</strong></div>
-              <span className="profile-start-pill">Start here</span>
-            </article>
-
-            <article className="profile-pace-card">
-              <span className="profile-card-icon"><Clock3 size={19} aria-hidden="true" /></span>
-              <div><small>Your learning pace</small><strong>{rows[5][1]}</strong></div>
-              <span className="profile-gentle-pill">At your pace</span>
-            </article>
-          </section>
-
-          <aside className="profile-focus-column" aria-label="Your focus areas">
-            <section className="profile-focus-list">
-              <div className="profile-focus-heading"><span>Your focus areas</span><small>4 signals</small></div>
-              {rows.slice(0, 4).map(([label, value], index) => <div className="profile-focus-row" key={label}><span>{value}</span><span className={`profile-focus-dot profile-focus-dot-${index + 1}`} aria-hidden="true" /></div>)}
-            </section>
-            <section className="profile-guidance-card">
-              <div><ShieldCheck size={20} aria-hidden="true" /><span>Responsible guidance</span></div>
-              <strong>Helpful direction,<br />never a diagnosis.</strong>
-              <div className="profile-guidance-wave" aria-hidden="true">{[12,22,15,30,18,35,24,15,29,20,32,14].map((height, index) => <i key={index} style={{ height }} />)}</div>
-            </section>
-          </aside>
+          <article className="profile-primary-card">
+            <div className="profile-card-label"><span><Sparkles size={15} aria-hidden="true" /> Your Longr recommendation</span><span className="profile-personalized-pill">Personalized</span></div>
+            <p>{blockerPromise(answers.primary_food_blocker)} Start with age-relevant food decisions you can use immediately, then build one small habit at a time.</p>
+            <div className="profile-card-proof"><span><CheckCircle2 size={14} aria-hidden="true" /> Based on your answers</span><span><ShieldCheck size={14} aria-hidden="true" /> Educational guidance</span></div>
+          </article>
         </div>
 
         <footer className="profile-dashboard-footer">
@@ -560,6 +562,7 @@ function PersonalizedPlan({ answers, recommendations, weekPath, onContinue }: { 
   return (
     <section className="screen active personalized-plan-screen">
       <div className="plan-report-dashboard">
+        <div className="plan-scrollable-body">
         <nav className="plan-report-topbar" aria-label="Plan report sections">
           <div className="plan-report-brand"><Leaf size={19} aria-hidden="true" /><strong>Longr</strong><span>Personal plan</span></div>
           <div className="plan-report-tabs" aria-hidden="true"><span className="active">Report</span><span>7-day path</span><span>Reading</span></div>
@@ -634,6 +637,7 @@ function PersonalizedPlan({ answers, recommendations, weekPath, onContinue }: { 
               <div className="plan-shift-summary"><span>What changes</span><div><p><small>Today</small>Nutrition noise and no clear next step</p><ArrowRight size={18} aria-hidden="true" /><p><small>With Longr</small>One useful decision, then one small habit</p></div></div>
             </section>
           </div>
+        </div>
         </div>
 
         <footer className="plan-report-footer">
