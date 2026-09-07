@@ -514,17 +514,22 @@ function HealthyYearsProfile({ answers, onContinue }: { answers: OnboardingAnswe
                 <strong>{rows[1][1]}</strong>
                 <small>{rows[1][0]}</small>
               </article>
-            </div>
-            <div className="profile-card-col">
               <article className="profile-info-card">
                 <div className="profile-card-label"><span><Sparkles size={15} aria-hidden="true" /> Food clarity</span></div>
                 <strong>{rows[2][1]}</strong>
                 <small>{rows[2][0]}</small>
               </article>
+            </div>
+            <div className="profile-card-col">
               <article className="profile-info-card">
                 <div className="profile-card-label"><span><AlertTriangle size={15} aria-hidden="true" /> Biggest friction</span></div>
                 <strong>{rows[3][1]}</strong>
                 <small>{rows[3][0]}</small>
+              </article>
+              <article className="profile-info-card">
+                <div className="profile-card-label"><span><Clock3 size={15} aria-hidden="true" /> First practical focus</span></div>
+                <strong>{rows[4][1]}</strong>
+                <small>{rows[4][0]}</small>
               </article>
               <article className="profile-info-card">
                 <div className="profile-card-label"><span><Clock3 size={15} aria-hidden="true" /> Learning pace</span></div>
