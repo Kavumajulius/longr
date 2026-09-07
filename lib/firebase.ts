@@ -19,7 +19,11 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 // Analytics is only available in browser environment
 let analytics: Analytics | undefined;
 if (typeof window !== "undefined") {
-  analytics = getAnalytics(app);
+  try {
+    analytics = getAnalytics(app);
+  } catch {
+    // Analytics server fetch failed; fall back to local measurement ID
+  }
 }
 
 // Initialize Firestore. The project's database is a custom-named database

@@ -505,16 +505,12 @@ function HealthyYearsProfile({ answers, onContinue }: { answers: OnboardingAnswe
           <div className="profile-cards-grid">
             <div className="profile-card-col">
               <article className="profile-info-card">
-                <div className="profile-card-label"><span><Compass size={15} aria-hidden="true" /> Age focus</span></div>
-                <strong>{ageFocus(answers.age_bracket)}</strong>
-              </article>
-              <article className="profile-info-card">
-                <div className="profile-card-label"><span><Target size={15} aria-hidden="true" /> Future priority</span></div>
+                <div className="profile-card-label"><span><Compass size={15} aria-hidden="true" /> Future priority</span></div>
                 <strong>{rows[0][1]}</strong>
                 <small>{rows[0][0]}</small>
               </article>
               <article className="profile-info-card">
-                <div className="profile-card-label"><span><Activity size={15} aria-hidden="true" /> Current focus</span></div>
+                <div className="profile-card-label"><span><Target size={15} aria-hidden="true" /> Current focus</span></div>
                 <strong>{rows[1][1]}</strong>
                 <small>{rows[1][0]}</small>
               </article>

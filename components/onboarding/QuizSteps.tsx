@@ -25,10 +25,12 @@ interface QuizStepsProps {
 
 export default function QuizSteps({ step, stepNumber, answers, onAnswer, onSkip }: QuizStepsProps) {
   const featureImage = stepNumber === 1
-    ? { src: "/images/onboarding/quiz-woman-50.png", alt: "A confident woman encouraging the reader to begin" }
-    : stepNumber === 15
-      ? { src: "/images/onboarding/quiz-man-55.png", alt: "A confident man encouraging a realistic daily commitment" }
-      : null;
+      ? { src: "/images/onboarding/quiz-woman-50.png", alt: "A confident woman encouraging the reader to begin" }
+      : stepNumber === 6
+        ? { src: "/images/onboarding/quiz-woman-50.png", alt: "A confident woman encouraging the reader to begin" }
+      : stepNumber === 15
+        ? { src: "/images/onboarding/quiz-man-55.png", alt: "A confident man encouraging a realistic daily commitment" }
+        : null;
 
   return (
     <section className={`screen active quiz-screen${featureImage ? " quiz-screen-with-person" : ""}${stepNumber === 15 ? " quiz-screen-with-person--commitment" : ""}`} aria-labelledby="quiz-title">

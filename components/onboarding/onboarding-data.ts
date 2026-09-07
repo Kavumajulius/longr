@@ -51,12 +51,11 @@ export const quizSteps: QuizStepDefinition[] = [
     title: "How old are you?",
     supporting:
       "We’ll tailor Longr around food choices that may matter more at your stage of life.",
-    choices: [
+choices: [
       choice("40_49", "40–49"),
       choice("50_59", "50–59"),
       choice("60_69", "60–69"),
       choice("70_plus", "70+"),
-      choice("caregiver", "I’m choosing for a parent or loved one"),
     ],
   },
   {
@@ -64,24 +63,22 @@ export const quizSteps: QuizStepDefinition[] = [
     title: "What matters most to you in the years ahead?",
     supporting:
       "Choose the outcome you most want your everyday food choices to support.",
-    choices: [
+choices: [
       choice("strong_mobile", "Stay strong and mobile", "↗"),
       choice("independence", "Protect my independence", "⌂"),
       choice("heart_metabolic", "Support my heart and metabolic health", "♥"),
       choice("brain", "Stay mentally sharp", "◎"),
-      choice("family_time", "Have more healthy years with the people I love", "＋"),
     ],
   },
   {
     key: "current_food_health_focus",
     title: "What are you paying the most attention to right now?",
     supporting: "This helps us choose the food topics most useful to you.",
-    choices: [
+choices: [
       choice("heart_metabolic", "Heart, blood pressure, or blood sugar"),
       choice("brain", "Brain health"),
       choice("strength", "Strength / muscle / mobility"),
       choice("healthy_aging", "Overall healthy aging"),
-      choice("unsure", "I’m not sure — I just want to eat better"),
     ],
   },
   {
@@ -132,12 +129,11 @@ export const quizSteps: QuizStepDefinition[] = [
     key: "primary_food_blocker",
     title: "What makes eating better hardest for you?",
     supporting: "Pick the one that gets in your way most often.",
-    choices: [
+choices: [
       choice("conflicting_advice", "There is too much conflicting advice"),
-      choice("age_relevance", "I don’t know what matters most at my age"),
+      choice("age_relevance", "I don't know what matters most at my age"),
       choice("time_convenience", "Time and convenience get in the way"),
-      choice("restriction", "I don’t want to give up foods I enjoy"),
-      choice("consistency", "I know the basics, but struggle to stay consistent"),
+      choice("restriction", "I don't want to give up foods I enjoy"),
     ],
   },
   {
@@ -150,7 +146,6 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("monitoring", "I’m monitoring a health marker or following clinician guidance"),
       choice("rebuilding", "I’m rebuilding habits after years of putting them off"),
       choice("caregiver", "I often choose food for myself and someone I care for"),
-      choice("reliable_info", "I want reliable information for everyday choices"),
     ],
   },
   {
@@ -161,7 +156,6 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("grocery", "Knowing what to buy at the grocery store"),
       choice("swaps", "Finding better swaps for foods I already eat"),
       choice("labels_preparation", "Reading labels and preparing food better"),
-      choice("eat_more", "Knowing what to eat more often"),
     ],
   },
   {
@@ -172,18 +166,16 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("active", "My ability to walk, travel, and stay active"),
       choice("heart_brain", "My heart, circulation, and mental sharpness"),
       choice("strength", "My strength and mobility"),
-      choice("family", "My ability to enjoy life with family"),
     ],
   },
   {
     key: "previous_food_learning_method",
     title: "How have you tried to eat better before?",
-    choices: [
+choices: [
       choice("content", "Mostly articles, videos, or social media"),
       choice("diets", "Diets or meal plans"),
       choice("professional", "Advice from a doctor or dietitian"),
       choice("self_tools", "Apps or changes I made on my own"),
-      choice("none", "I haven’t tried anything structured"),
     ],
   },
   {
@@ -205,7 +197,6 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("swaps", "Find 3–5 better grocery swaps"),
       choice("labels_habit", "Understand labels and improve one food habit"),
       choice("eat_more", "Build a simple list of foods to eat more often"),
-      choice("age_clarity", "Feel clearer about what matters for my age"),
     ],
   },
   {
@@ -218,7 +209,6 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("5_min", "5 minutes"),
       choice("10_min", "10 minutes"),
       choice("15_min", "15 minutes"),
-      choice("few_weekly", "I’d rather learn a few times per week"),
     ],
   },
   {
@@ -231,7 +221,6 @@ export const quizSteps: QuizStepDefinition[] = [
       choice("strong_mobile", "I’m still strong and mobile"),
       choice("food_confidence", "I feel confident about how I eat"),
       choice("active_sharp", "I’m active, traveling, and mentally sharp"),
-      choice("family_time", "I have more healthy time with my family"),
     ],
   },
 ];
