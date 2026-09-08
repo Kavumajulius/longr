@@ -482,8 +482,6 @@ function HealthyYearsProfile({ answers, onContinue }: { answers: OnboardingAnswe
         <div className="profile-scrollable-body">
           <nav className="profile-dashboard-nav" aria-label="Profile sections">
             <div className="profile-dashboard-brand"><Leaf size={17} aria-hidden="true" /><span>Longr profile</span></div>
-            <div className="profile-dashboard-tabs" aria-hidden="true"><span className="active">Overview</span><span>Focus areas</span><span>First step</span></div>
-            <div className="profile-private"><ShieldCheck size={15} aria-hidden="true" /> Private profile</div>
           </nav>
 
           <div className="profile-hero-card">
