@@ -562,81 +562,81 @@ function PersonalizedPlan({ answers, recommendations, weekPath, onContinue }: { 
     <section className="screen active personalized-plan-screen">
       <div className="plan-report-dashboard">
         <div className="plan-scrollable-body">
-        <nav className="plan-report-topbar" aria-label="Plan report sections">
-          <div className="plan-report-brand"><Leaf size={19} aria-hidden="true" /><strong>Longr</strong><span>Personal plan</span></div>
-          <div className="plan-report-tabs" aria-hidden="true"><span className="active">Report</span><span>7-day path</span><span>Reading</span></div>
-          <div className="plan-report-status"><CheckCircle2 size={16} aria-hidden="true" /> Ready for you</div>
-        </nav>
+          <nav className="plan-report-topbar" aria-label="Plan report sections">
+            <div className="plan-report-brand"><Leaf size={19} aria-hidden="true" /><strong>Longr</strong><span>Personal plan</span></div>
+            <div className="plan-report-tabs" aria-hidden="true"><span className="active">Report</span><span>7-day path</span><span>Reading</span></div>
+            <div className="plan-report-status"><CheckCircle2 size={16} aria-hidden="true" /> Ready for you</div>
+          </nav>
 
-        <div className="plan-report-hero">
-          <div>
-            <p className="quiz-kicker">Built around your answers</p>
-            <h1 className="step-title">Your plan for eating for the years ahead is ready.</h1>
-            <p>Built around your goal to <strong>{goal.toLowerCase()}</strong>.</p>
+          <div className="plan-report-hero">
+            <div>
+              <p className="quiz-kicker">Built around your answers</p>
+              <h1 className="step-title">Your plan for eating for the years ahead is ready.</h1>
+              <p>Built around your goal to <strong>{goal.toLowerCase()}</strong>.</p>
+            </div>
+            <div className="plan-report-metrics" aria-label="Plan summary">
+              <div><strong>7</strong><span>guided<br />days</span></div>
+              <div><strong>{recommendations.length}</strong><span>selected<br />reads</span></div>
+              <div><strong>{pace}</strong><span>daily<br />pace</span></div>
+            </div>
           </div>
-          <div className="plan-report-metrics" aria-label="Plan summary">
-            <div><strong>7</strong><span>guided<br />days</span></div>
-            <div><strong>{recommendations.length}</strong><span>selected<br />reads</span></div>
-            <div><strong>{pace}</strong><span>daily<br />pace</span></div>
-          </div>
-        </div>
 
-        <div className="plan-report-body">
-          <aside className="plan-report-rail" aria-hidden="true">
-            <span className="active"><Activity size={17} /></span><span><TrendingUp size={17} /></span><span><CalendarDays size={17} /></span><span><BookOpen size={17} /></span><span><ShieldCheck size={17} /></span>
-          </aside>
+          <div className="plan-report-body">
+            <aside className="plan-report-rail" aria-hidden="true">
+              <span className="active"><Activity size={17} /></span><span><TrendingUp size={17} /></span><span><CalendarDays size={17} /></span><span><BookOpen size={17} /></span><span><ShieldCheck size={17} /></span>
+            </aside>
 
-          <div className="plan-report-grid">
-            <section className="plan-report-card plan-mix-card" aria-labelledby="plan-mix-title">
-              <div className="plan-card-heading"><div><span>Plan composition</span><h2 id="plan-mix-title">Your first-week mix</h2></div><span className="plan-card-menu" aria-hidden="true">•••</span></div>
-              <div className="plan-mix-content">
-                <div className="plan-ring-graphic" role="img" aria-label="A balanced plan combining food focus, practical action, and learning">
-                  <svg viewBox="0 0 150 150" aria-hidden="true">
-                    <circle className="plan-ring-track" cx="75" cy="75" r="55" pathLength="100" />
-                    <circle className="plan-ring-segment plan-ring-food" cx="75" cy="75" r="55" pathLength="100" />
-                    <circle className="plan-ring-segment plan-ring-action" cx="75" cy="75" r="55" pathLength="100" />
-                    <circle className="plan-ring-segment plan-ring-learning" cx="75" cy="75" r="55" pathLength="100" />
+            <div className="plan-report-grid">
+              <section className="plan-report-card plan-mix-card" aria-labelledby="plan-mix-title">
+                <div className="plan-card-heading"><div><span>Plan composition</span><h2 id="plan-mix-title">Your first-week mix</h2></div><span className="plan-card-menu" aria-hidden="true">•••</span></div>
+                <div className="plan-mix-content">
+                  <div className="plan-ring-graphic" role="img" aria-label="A balanced plan combining food focus, practical action, and learning">
+                    <svg viewBox="0 0 150 150" aria-hidden="true">
+                      <circle className="plan-ring-track" cx="75" cy="75" r="55" pathLength="100" />
+                      <circle className="plan-ring-segment plan-ring-food" cx="75" cy="75" r="55" pathLength="100" />
+                      <circle className="plan-ring-segment plan-ring-action" cx="75" cy="75" r="55" pathLength="100" />
+                      <circle className="plan-ring-segment plan-ring-learning" cx="75" cy="75" r="55" pathLength="100" />
+                    </svg>
+                    <div><strong>7</strong><span>days</span></div>
+                  </div>
+                  <div className="plan-mix-legend">
+                    <div><i className="food" /><span>Food focus</span><strong>{foodFocus}</strong></div>
+                    <div><i className="action" /><span>First action</span><strong>{firstAction}</strong></div>
+                    <div><i className="learning" /><span>Learning</span><strong>{pace} a day</strong></div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="plan-report-card plan-momentum-card" aria-labelledby="plan-momentum-title">
+                <div className="plan-card-heading"><div><span>Your week at a glance</span><h2 id="plan-momentum-title">A realistic rhythm that builds</h2></div><span className="plan-trend-pill"><TrendingUp size={14} aria-hidden="true" /> One step daily</span></div>
+                <div className="plan-chart-wrap" role="img" aria-label="Seven-day path rising gradually from one clear start to a repeatable routine">
+                  <svg viewBox="0 0 560 205" preserveAspectRatio="none" aria-hidden="true">
+                    <defs><linearGradient id="planAreaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#3290f5" stopOpacity=".28" /><stop offset="100%" stopColor="#3290f5" stopOpacity="0" /></linearGradient></defs>
+                    {[36, 76, 116, 156].map(y => <line className="plan-chart-gridline" key={y} x1="24" x2="536" y1={y} y2={y} />)}
+                    <path className="plan-chart-area" d="M24 157 C78 155 96 148 126 143 S188 132 213 121 S270 111 299 104 S353 77 386 69 S447 55 474 43 S514 32 536 27 L536 180 L24 180 Z" />
+                    <path className="plan-chart-line" d="M24 157 C78 155 96 148 126 143 S188 132 213 121 S270 111 299 104 S353 77 386 69 S447 55 474 43 S514 32 536 27" />
+                    {[[24, 157], [109, 146], [194, 128], [280, 109], [365, 75], [450, 52], [536, 27]].map(([cx, cy], index) => <circle className="plan-chart-point" style={{ animationDelay: `${.55 + index * .1}s` }} key={cx} cx={cx} cy={cy} r="5" />)}
                   </svg>
-                  <div><strong>7</strong><span>days</span></div>
+                  <div className="plan-chart-callout"><span>Day 7</span><strong>Repeatable routine</strong></div>
+                  <div className="plan-chart-days" aria-hidden="true">{["D1", "D2", "D3", "D4", "D5", "D6", "D7"].map(day => <span key={day}>{day}</span>)}</div>
                 </div>
-                <div className="plan-mix-legend">
-                  <div><i className="food" /><span>Food focus</span><strong>{foodFocus}</strong></div>
-                  <div><i className="action" /><span>First action</span><strong>{firstAction}</strong></div>
-                  <div><i className="learning" /><span>Learning</span><strong>{pace} a day</strong></div>
-                </div>
-              </div>
-            </section>
+              </section>
 
-            <section className="plan-report-card plan-momentum-card" aria-labelledby="plan-momentum-title">
-              <div className="plan-card-heading"><div><span>Your week at a glance</span><h2 id="plan-momentum-title">A realistic rhythm that builds</h2></div><span className="plan-trend-pill"><TrendingUp size={14} aria-hidden="true" /> One step daily</span></div>
-              <div className="plan-chart-wrap" role="img" aria-label="Seven-day path rising gradually from one clear start to a repeatable routine">
-                <svg viewBox="0 0 560 205" preserveAspectRatio="none" aria-hidden="true">
-                  <defs><linearGradient id="planAreaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#3290f5" stopOpacity=".28" /><stop offset="100%" stopColor="#3290f5" stopOpacity="0" /></linearGradient></defs>
-                  {[36,76,116,156].map(y => <line className="plan-chart-gridline" key={y} x1="24" x2="536" y1={y} y2={y} />)}
-                  <path className="plan-chart-area" d="M24 157 C78 155 96 148 126 143 S188 132 213 121 S270 111 299 104 S353 77 386 69 S447 55 474 43 S514 32 536 27 L536 180 L24 180 Z" />
-                  <path className="plan-chart-line" d="M24 157 C78 155 96 148 126 143 S188 132 213 121 S270 111 299 104 S353 77 386 69 S447 55 474 43 S514 32 536 27" />
-                  {[[24,157],[109,146],[194,128],[280,109],[365,75],[450,52],[536,27]].map(([cx,cy], index) => <circle className="plan-chart-point" style={{ animationDelay: `${.55 + index * .1}s` }} key={cx} cx={cx} cy={cy} r="5" />)}
-                </svg>
-                <div className="plan-chart-callout"><span>Day 7</span><strong>Repeatable routine</strong></div>
-                <div className="plan-chart-days" aria-hidden="true">{["D1","D2","D3","D4","D5","D6","D7"].map(day => <span key={day}>{day}</span>)}</div>
-              </div>
-            </section>
+              <section className="plan-report-card plan-week-card" aria-labelledby="plan-week-title">
+                <div className="plan-card-heading"><div><span>Guided path</span><h2 id="plan-week-title">Your first 7 days</h2></div><span className="plan-week-count">7 / 7 mapped</span></div>
+                <ol className="plan-week-timeline">{weekPath.map((item, index) => {
+                  const [day, ...description] = item.split("—");
+                  return <li key={item} style={{ animationDelay: `${.12 + index * .08}s` }}><span className="plan-day-node">{index + 1}</span><div><small>{day.trim()}</small><strong>{description.join("—").trim() || item}</strong></div>{index === 0 && <span className="plan-now-pill">Begin here</span>}</li>;
+                })}</ol>
+              </section>
 
-            <section className="plan-report-card plan-week-card" aria-labelledby="plan-week-title">
-              <div className="plan-card-heading"><div><span>Guided path</span><h2 id="plan-week-title">Your first 7 days</h2></div><span className="plan-week-count">7 / 7 mapped</span></div>
-              <ol className="plan-week-timeline">{weekPath.map((item, index) => {
-                const [day, ...description] = item.split("—");
-                return <li key={item} style={{ animationDelay: `${.12 + index * .08}s` }}><span className="plan-day-node">{index + 1}</span><div><small>{day.trim()}</small><strong>{description.join("—").trim() || item}</strong></div>{index === 0 && <span className="plan-now-pill">Begin here</span>}</li>;
-              })}</ol>
-            </section>
-
-            <section className="plan-report-card plan-reading-card" aria-labelledby="plan-reading-title">
-              <div className="plan-card-heading"><div><span>Chosen for your answers</span><h2 id="plan-reading-title">Selected for you</h2></div><BookOpen size={19} aria-hidden="true" /></div>
-              <div className="plan-reading-list">{recommendations.map((item,index)=><article key={item}><span className={`plan-read-number plan-read-${index + 1}`}>0{index+1}</span><div><small>4–5 min read</small><h3>{item}</h3></div><ChevronRight size={17} aria-hidden="true" /></article>)}</div>
-              <div className="plan-shift-summary"><span>What changes</span><div><p><small>Today</small>Nutrition noise and no clear next step</p><ArrowRight size={18} aria-hidden="true" /><p><small>With Longr</small>One useful decision, then one small habit</p></div></div>
-            </section>
+              <section className="plan-report-card plan-reading-card" aria-labelledby="plan-reading-title">
+                <div className="plan-card-heading"><div><span>Chosen for your answers</span><h2 id="plan-reading-title">Selected for you</h2></div><BookOpen size={19} aria-hidden="true" /></div>
+                <div className="plan-reading-list">{recommendations.map((item, index) => <article key={item}><span className={`plan-read-number plan-read-${index + 1}`}>0{index + 1}</span><div><small>4–5 min read</small><h3>{item}</h3></div><ChevronRight size={17} aria-hidden="true" /></article>)}</div>
+                <div className="plan-shift-summary"><span>What changes</span><div><p><small>Today</small>Nutrition noise and no clear next step</p><ArrowRight size={18} aria-hidden="true" /><p><small>With Longr</small>One useful decision, then one small habit</p></div></div>
+              </section>
+            </div>
           </div>
-        </div>
         </div>
 
         <footer className="plan-report-footer">
