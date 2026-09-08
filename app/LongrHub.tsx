@@ -263,6 +263,7 @@ export default function LongrHub({
   function browseArticleCategory(category: Category) {
     if (category === "All") return;
     setArticleCategory(category);
+    setSelectedArticle(null);
     setShareFeedback("");
   }
 
